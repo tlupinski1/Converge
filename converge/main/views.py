@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 def homepage(request):
-	return HttpResponse("Welcome to the Converge website!")
+	return render(request=request,
+                  template_name="main/home.html")
+
 # Create your views here.
