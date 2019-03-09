@@ -1,0 +1,30 @@
+<head>
+  <!--This is where the nav bar and all the globalized styling will go-->
+  {% load static %}
+  <!-- Compiled and minified CSS credit to https://materializecss.com/-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript https://materializecss.com/-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body class="blue-grey lighten-4">
+  <nav>
+    <div class="nav-wrapper green accent-3">
+      <a href="#" class="brand-logo">ConVerge</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Home</a></li>
+        <li><a href="badges.html">Login</a></li>
+        <li><a href="collapsible.html">Public Dashboard</a></li>
+        <li><a href="collapsible.html">Sign Up</a></li>
+        <li><a href="collapsible.html">About Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  {% block content%}
+
+  {% endblock%}
+
+</body>
