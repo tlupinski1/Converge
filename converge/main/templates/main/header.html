@@ -15,9 +15,13 @@
       <a href="#" class="brand-logo">ConVerge</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="sass.html">Home</a></li>
-        <li><a href="login.html">Login</a></li>
-        <li><a href="collapsible.html">Public Dashboard</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="logout">Logout</a></li>
+        {% else %}
+        <li><a href="login">Login</a></li>
         <li><a href="register">Sign Up</a></li>
+        {% endif %}
+        <li><a href="collapsible.html">Public Dashboard</a></li>
         <li><a href="collapsible.html">About Us</a></li>
       </ul>
     </div>
