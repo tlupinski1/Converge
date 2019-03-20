@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import OurUserForm, UpdateUser, UpdateProfile
+from users.models import Profile, User
+
+def allUsers(request):
+    users = User.objects.all() #from db
+    return render(request,'users/allProfiles.html',{'profs':users})
 
 def register(request):#register view.
   if request.method == 'POST':
