@@ -16,11 +16,20 @@ def register(request):#register view.
   return render(request,'users/register.html',{'form':form});
 
 def profiles(request):
-  update_user = UpdateUser(instance=request.user)
-  update_profile = UpdateProfile(instance=request.user.profile)
-  context = {
-    'u': update_user,
-    'p': update_profile
-  }
-  return render(request,'users/profiles.html',context);
+    if request.method == 'POST':
+        update_user = UpdateUser(request.POST, instance=request.user)
+        update_profile = UpdateProfile(request.POST, request.FILES, instance=request.user.profile)
+        if update_user.is_valid() and update_profile.is_valid:
+          update_user.save()
+          update_profile.save()
+          messages.success(request, f'Updated Information For Account')
+          return redirect('/profiles')
+    else:
+        update_user = UpdateUser(instance=request.user)
+        update_profile = UpdateProfile(instance=request.user.profile)
+    context = {
+        'u': update_user,
+        'p': update_profile
+    }
+    return render(request,'users/profiles.html',context);
 # Create your views here.
