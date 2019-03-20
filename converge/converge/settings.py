@@ -122,3 +122,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'main-home'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'images') #store uploaded files here! not in the database i.e. sqlite3
+MEDIA_URL = '/images/' #use this for html.  a href.
