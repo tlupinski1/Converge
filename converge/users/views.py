@@ -14,4 +14,7 @@ def register(request):#register view.
   else:
     form = OurUserForm()
   return render(request,'users/register.html',{'form':form});
+
+def profiles(request):
+  return render(request,'users/profiles.html');
 # Create your views here.

@@ -1,0 +1,37 @@
+{% extends "main/header.html" %}
+
+{% block content%}
+<style>
+.media{
+  background-color:white;
+  height: 20vh;
+  border-radius: 2vh;
+
+}
+.account-img{
+  height: inherit;
+}
+.media-body{
+  position:relative;
+  left: 1vw;
+}
+#main1{
+  position:relative;
+  top: 1vh;
+}
+</style>
+<div class="row" id="main1">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <div class="content-section">
+      <div class="media">
+        <img class="account-img" src="{{user.profile.image.url}}">
+        <div class="media-body">
+          <h4>{{user.username}}</h4>
+          <p>{{user.email}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock%}
