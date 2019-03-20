@@ -14,4 +14,4 @@ def create_profile(sender,instance,created,++kwargs):
 
 @receiver(post_save, sender=User) #sender is the User.  so if the user gets post_saved then send signal.  which will run create_profile function
 def save_profile(sender,instance,++kwargs):
-    instance.profile.save()        
+    instance.profile.save()
