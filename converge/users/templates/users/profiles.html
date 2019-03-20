@@ -1,5 +1,4 @@
 {% extends "main/header.html" %}
-
 {% block content%}
 <style>
 .media{
@@ -19,6 +18,11 @@
   position:relative;
   top: 1vh;
 }
+form{
+  background-color: white;
+  border-radius: 2vh;
+  padding: 2vh;
+}
 </style>
 <div class="row" id="main1">
   <div class="col-3"></div>
@@ -31,7 +35,22 @@
           <p>{{user.email}}</p>
         </div>
       </div>
+      <br>
+      <form method="POST" enctype="mutlipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-4">
+            Edit Information:
+          </legend>
+          {{ u.as_p }}
+          {{ p.as_p }}
+        </fieldset>
+        <div class="form-group">
+          <button class="btn btn-outline-info" type="submit">Save</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
+
 {% endblock%}

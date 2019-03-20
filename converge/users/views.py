@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import OurUserForm
+from .forms import OurUserForm, UpdateUser, UpdateProfile
 
 def register(request):#register view.
   if request.method == 'POST':
@@ -16,5 +16,11 @@ def register(request):#register view.
   return render(request,'users/register.html',{'form':form});
 
 def profiles(request):
-  return render(request,'users/profiles.html');
+  update_user = UpdateUser(instance=request.user)
+  update_profile = UpdateProfile(instance=request.user.profile)
+  context = {
+    'u': update_user,
+    'p': update_profile
+  }
+  return render(request,'users/profiles.html',context);
 # Create your views here.
