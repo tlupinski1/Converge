@@ -22,7 +22,7 @@ def register(request):#register view.
 
 def projectCreation(request):
   if request.method == 'POST':
-    form = ProjectForm(request.POST)
+    form = ProjectForm(request.POST, request.FILES)
     if form.is_valid():
       form.save()
       projName=form.cleaned_data.get('projectName')
