@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import OurUserForm, UpdateUser, UpdateProfile
-from users.models import Profile, User
+from .forms import OurUserForm, UpdateUser, UpdateProfile, ProjectForm
+from users.models import Profile, User, Project
 
 def allUsers(request):
     users = User.objects.all() #from db
@@ -19,6 +19,22 @@ def register(request):#register view.
   else:
     form = OurUserForm()
   return render(request,'users/register.html',{'form':form});
+
+def projectCreation(request):
+  if request.method == 'POST':
+    form = ProjectForm(request.POST)
+    if form.is_valid():
+      form.save()
+      projName=form.cleaned_data.get('projectName')
+      messages.success(request, f'{projName} has been created')
+      return redirect('/publicDashboard')
+  else:
+    form = ProjectForm()
+  return render(request,'users/createProject.html',{'form':form});
+
+def dashboard(request):
+    projects = Project.objects.all() #from db
+    return render(request,'users/dashboard.html',{'proj':projects})
 
 def profiles(request):
     if request.method == 'POST':

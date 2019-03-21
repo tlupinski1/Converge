@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<title>Another Green World</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta charset="utf-8">
+<link rel="stylesheet" href="jquery-ui.min.css">
+<script src="./scripts/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<style>
+.dropdown{
+  float: right;
+}
+#main-head{
+  background-color: #A0A0A0;
+  background-image: url("./images/header.png");
+  height: 30vh;
+  background-size: contain;
+  background-position: top;
+  background-repeat: repeat-x;
+}
+#main-body{
+  background-color:#F6EEE1;
+}
+
+#main-bottom{
+  background-image: url("./images/footer.png");
+  background-size:contain;
+  position: fixed;
+  bottom: 0px;
+  width: 100vw;
+  height: 12vh;
+}
+
+.figures{
+  width: 5vw;
+  height:auto;
+  position:absolute;
+  bottom: 0vh;
+}
+
+#AGW{
+  text-align: right;
+  width: 89.5vw;
+  font-size: 40px;
+  position: relative;
+  top: 10vh;
+  font-family: helvetica;
+  font-weight: bold;
+  color: white;
+}
+
+#Eno{
+  text-align: right;
+  font-size: 17px;
+  width: 82vw;
+  font-family: Ubuntu;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  top: 8vh;
+}
+
+#angel{
+  position:fixed;
+  right: 0vw;
+  top:0vh;
+  width: 6vw;
+  height:auto;
+}
+
+#parlor{
+  position:fixed;
+  right: 0vw;
+  bottom:-11vh;
+  width: 20vw;
+  height:auto;
+}
+
+.btn{
+  font-size: .6em;
+  background-color: grey;
+  border-color: white;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#anime{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.side1{
+
+  outline: 2px solid #ccc;
+  outline-offset: -10px;
+  /* background-color: green; */
+}
+
+.sideLeft{
+  box-shadow: 0px 0px .5px 0px #ccc, inset -1px -1px 0 0 #ccc;
+}
+
+</style>
+</head>
+<body>
+<script>
+$(document).ready(function(){
+  readerMode();
+});
+
+</script>
+<div id="main-head" class="container-fluid text-center">
+  <h1 id="AGW">Another Green World</h1>
+  <p id="Eno">Brian Eno, 1975</p>
+</div>
+<img id="angel" src="./images/angel.png">
+<div id="main-body" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-1 side1">
+      <br>
+      <p><a href="#">About Site</a></p>
+      <p id="anime">Animations?</p>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" onclick="animationMode()">On</button>
+        <button type="button" class="btn btn-primary" onclick="readerMode()">Off</button>
+      </div>
+    </div>
+    <div class="col-sm-10 sideLeft" >
+      <h3>Column 2</h3>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" onclick="animationMode()">On</button>
+        <button type="button" class="btn btn-primary" onclick="readerMode()">Off</button>
+      </div>
+      <script>
+      function readerMode(){
+        $(".figures").hide();
+        $("#angel").hide();
+        $("#parlor").hide();
+        $("#main-bottom").hide();
+      };
+      function animationMode(){
+        $(".figures").show();
+        $("#angel").show();
+        $("#parlor").show();
+        $("#main-bottom").show();
+      }
+      </script>
+      <p>To Do: control panel, down key to make everyone start moving??, nother set of figures.  </p>
+      <p>Ut enim ad..</p>
+      <p>Test test test</p>
+	  <blockquote class="blockquote-reverse">
+	    <p>For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.</p>
+	    <footer>From WWF's website</footer>
+	  </blockquote>
+    <h3>Column 2</h3>
+    <p>Lorem ipsum dolor.</p>
+    <p>Ut enim ad..</p>
+    <p>Test test test</p>
+  <blockquote class="blockquote-reverse">
+    <p>For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.</p>
+    <footer>From WWF's website</footer>
+  </blockquote>
+  <h3>Column 2</h3>
+  <p>Lorem ipsum dolor.</p>
+  <p>Ut enim ad..</p>
+  <p>Test test test</p>
+<blockquote class="blockquote-reverse">
+  <p>For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.</p>
+  <footer>From WWF's website</footer>
+</blockquote>
+<h3>Column 2</h3>
+<p>Lorem ipsum dolor.</p>
+<p>Ut enim ad..</p>
+<p>Test test test</p>
+<blockquote class="blockquote-reverse">
+<p>For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.</p>
+<footer>From WWF's website</footer>
+</blockquote>
+    </div>
+    <div class="col-sm-1">
+    </div>
+  </div>
+</div>
+
+<div id="main-bottom">
+  <img class="figures" src="./images/x.png">
+  <img class="figures" src="./images/y.png">
+  <img class="figures" src="./images/z.png">
+  <img class="figures" src="./images/x.png">
+  <img class="figures" src="./images/y.png">
+  <img class="figures" src="./images/z.png">
+  <img class="figures" src="./images/x.png">
+  <img class="figures" src="./images/y.png">
+  <img class="figures" src="./images/z.png">
+  <img id="parlor" src="./images/hookah.png">
+
+
+  <script>
+    var lookUpFigure = [
+      "./images/x.png",
+      "./images/y.png",
+      "./images/z.png"
+    ];
+    function getIndice(x){
+      for(var i=0;i<lookUpFigure.length;i++){
+        if(lookUpFigure[i]==x){
+          return i;
+        }else{
+        }
+      }
+      alert("error");
+    };
+    function randomMovement(){
+      $(".figures").each(function(index, value){
+        var x = $(this);
+        var randWait = Math.floor(Math.random()*20000) + 1;
+        var randDistance = Math.floor(Math.random()*90);
+        var dis = randDistance + "vw";
+        setTimeout(function(){
+          x.animate({left:dis},5000);
+        },randWait);
+      });
+    };
+    function bounce(){
+      $(".figures").effect( "bounce", { times: 3 }, "slow" );
+    };
+    $(document).ready(function(){
+      var arrayFigures = document.getElementsByClassName("figures");
+      var total = arrayFigures.length;
+      var incr = 80 / total;
+      for(var i=0;i<arrayFigures.length;i++){
+        arrayFigures[i].style.left = i*incr + "vw";
+        var typeF = arrayFigures[i].getAttribute("src");
+        if(typeF=="./images/y.png"){
+          arrayFigures[i].style.bottom = "-10vh";
+        }
+      }
+      // $(".figures").each(function(index.value){
+      //   var x = Math.random()
+      //   $(this).css("left","")
+      // });
+      var myVar = setInterval(randomMovement, 20001); //wihthin 20 sec every animation will finish
+      randomMovement();
+      $(".figures").mouseenter(function(){
+        $(this).effect("bounce",{timer: 1},"slow");//effect("bounce", { times: 3 }, "slow");
+      });
+      $(".figures").click(function(){
+        if($(this).css("transform") == "matrix(-1, 0, 0, 1, 0, 0)"){
+          $(this).css("transform","matrix(1, 0, 0, 1, 0, 0)");
+        }else{
+          $(this).css("transform","scale(-1, 1)");
+        }
+      });
+      $(".figures").dblclick(function(){
+        var cur = $(this).attr("src");
+        var x = getIndice(cur);
+        $(this).attr("src",lookUpFigure[(x+1)%lookUpFigure.length]);
+      });
+      $("#angel").click(function(){
+        var randLoc = Math.floor(Math.random()*80);
+        var randVW = randLoc + "vw";
+        var st = "left:" + randVW;
+        $("#main-bottom").append("<img src='./images/x.png' class='figures' class='toMove' style=" + st + ">");
+        $(".figures").mouseenter(function(){
+          $(this).effect("bounce",{timer: 1},"slow");//effect("bounce", { times: 3 }, "slow");
+        });
+        $(".figures").click(function(){
+          if($(this).css("transform") == "matrix(-1, 0, 0, 1, 0, 0)"){
+            $(this).css("transform","matrix(1, 0, 0, 1, 0, 0)");
+          }else{
+            $(this).css("transform","scale(-1, 1)");
+          }
+        });
+        $(".figures").dblclick(function(){
+          var cur = $(this).attr("src");
+          var x = getIndice(cur);
+          $(this).attr("src",lookUpFigure[(x+1)%lookUpFigure.length]);
+        });
+      });
+    });
+  </script>
+<!-- <ul class="pagination pagination-lg text-center">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+</ul>
+ <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">HTML</a></li>
+    <li><a href="#">CSS</a></li>
+    <li><a href="#">JavaScript</a></li>
+  </ul>
+</div>
+ <button data-toggle="collapse" data-target="#demo">Collapsible</button> -->
+</div>
+
+</body>
+</html>

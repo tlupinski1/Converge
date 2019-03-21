@@ -29,6 +29,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('profiles/', user_views.profiles, name='profiles'),
     path('allUsers/',user_views.allUsers,name='allusers'),
+    path('createProject/',user_views.projectCreation,name="projectCreation"),
+    path('publicDashboard/',user_views.dashboard,name="dash"),
     path('',main_views.home,name="main-home"),
 ]
 if settings.DEBUG:

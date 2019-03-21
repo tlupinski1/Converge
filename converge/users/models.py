@@ -8,3 +8,8 @@ class Profile(models.Model):
         return f'{self.user.username}\'s profile'
     def save(self):
         super().save()
+
+class Project(models.Model):
+      projectName = models.CharField(max_length=100)
+      projectType = models.CharField(max_length=100)
+      projectPicture = models.ImageField(default='pics/defaultProject.png',upload_to='pics/')

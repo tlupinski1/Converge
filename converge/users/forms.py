@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile #from db
+from .models import Profile, Project #from db
 
 class OurUserForm(UserCreationForm):
     email = forms.EmailField(required='false')
@@ -19,3 +19,8 @@ class UpdateProfile(forms.ModelForm):
     class Meta:
         model = Profile #we want to work with the Profile Model
         fields = ['image'] #bc everything else is user.
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['projectName','projectType','projectPicture']
