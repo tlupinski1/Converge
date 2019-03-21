@@ -21,6 +21,7 @@ def register(request):#register view.
   return render(request,'users/register.html',{'form':form});
 
 def projectCreation(request):
+  currentUser = request.user
   if request.method == 'POST':
     form = ProjectForm(request.POST, request.FILES)
     if form.is_valid():
@@ -30,7 +31,7 @@ def projectCreation(request):
       return redirect('/publicDashboard')
   else:
     form = ProjectForm()
-  return render(request,'users/createProject.html',{'form':form});
+  return render(request,'users/createProject.html',{'form':form,'user':currentUser});
 
 def dashboard(request):
     projects = Project.objects.all() #from db
