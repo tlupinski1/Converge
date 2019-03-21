@@ -30,4 +30,6 @@ urlpatterns = [
     path('profiles/', user_views.profiles, name='profiles'),
     path('allUsers/',user_views.allUsers,name='allusers'),
     path('',main_views.home,name="main-home"),
-] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) #variable set from earlier
+]
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

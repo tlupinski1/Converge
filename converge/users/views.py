@@ -24,7 +24,7 @@ def profiles(request):
     if request.method == 'POST':
         update_user = UpdateUser(request.POST, instance=request.user)
         update_profile = UpdateProfile(request.POST, request.FILES, instance=request.user.profile)
-        if update_user.is_valid() and update_profile.is_valid:
+        if update_user.is_valid() and update_profile.is_valid():
           update_user.save()
           update_profile.save()
           messages.success(request, f'Updated Information For Account')
@@ -35,6 +35,6 @@ def profiles(request):
     context = {
         'u': update_user,
         'p': update_profile
-    }
+    } #pass these to the html
     return render(request,'users/profiles.html',context);
 # Create your views here.

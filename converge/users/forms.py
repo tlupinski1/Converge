@@ -12,10 +12,10 @@ class OurUserForm(UserCreationForm):
 class UpdateUser(forms.ModelForm):
     class Meta:
         model=User
-        fields = ['username','email']
+        fields = ['username','email']#fields for form.  it will try to update these 2 attributes.
 
 
 class UpdateProfile(forms.ModelForm):
     class Meta:
-        model = Profile
+        model = Profile #we want to work with the Profile Model
         fields = ['image'] #bc everything else is user.

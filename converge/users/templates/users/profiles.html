@@ -29,21 +29,21 @@ form{
   <div class="col-6">
     <div class="content-section">
       <div class="media">
-        <img class="account-img" src="{{user.profile.image.url}}">
+        <img class="account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">
           <h4>{{user.username}}</h4>
           <p>{{user.email}}</p>
         </div>
       </div>
       <br>
-      <form method="POST" enctype="mutlipart/form-data">
+      <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="form-group">
           <legend class="border-bottom mb-4">
             Edit Information:
           </legend>
           {{ u.as_p }}
-          {{ p.as_p }}
+          {{ p }}
         </fieldset>
         <div class="form-group">
           <button class="btn btn-outline-info" type="submit">Save</button>
