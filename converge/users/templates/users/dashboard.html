@@ -2,43 +2,47 @@
 
 {% block content%}
 <style>
-.media{
-  background-color:white;
-  height: 20vh;
-  border-radius: 2vh;
 
-}
 .account-img{
-  height: inherit;
+  height: 20vh;
 }
-.media-body{
+/* .media-body{
   position:relative;
   left: 1vw;
 }
 #main1{
   position:relative;
   top: 1vh;
-}
+} */
 form{
   background-color: white;
   border-radius: 2vh;
-  padding: 2vh;
+  /* padding: 2vh; */
+}
+.media1{
+  float: left;
+  background-color:white;
+  width: 20vw;
+  height: 20vw;
+  border-radius: 2vh;
+  margin-left: 1vw;
+  margin-bottom: 1vh;
+  padding-left:1vw;
 }
 </style>
 <div class="row" id="main1">
-  <div class="col-3"></div>
-  <div class="col-6">
-    <div class="content-section">
+  <div class="col-2"></div>
+  <div class="col-9">
+    <div>
       <h1>All Projects: </h1>
       {% for x in proj %}
-      <div class="media">
+      <div class="media1">
         <img class="account-img" src="{{x.projectPicture.url}}">
-        <div class="media-body">
+        <div>
           <h4>Project Name: {{x.projectName}}</h4>
           <p>Project Type: {{x.projectType}}</p>
         </div>
       </div>
-      <br>
       {% endfor %}
     </div>
   </div>
