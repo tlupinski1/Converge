@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import OurUserForm, UpdateUser, UpdateProfile, ProjectForm
 from users.models import Profile, User, Project
+import datetime
 
 def allUsers(request):
     users = User.objects.all() #from db
@@ -28,6 +29,9 @@ def projectCreation(request):
       form.save()
       obj = Project.objects.get(projectName=form.cleaned_data.get('projectName')) #!!!!!
       obj.creator = currentUser.username #!!!!!
+      now = datetime.datetime.now()
+      string1 = now.strftime("%Y-%m-%d %H:%M")
+      obj.dateTime = string1
       obj.save() #!!!!!!
       projName=form.cleaned_data.get('projectName')
       messages.success(request, f'{projName} has been created')

@@ -11,6 +11,7 @@ class Profile(models.Model):
         super().save()
 
 class Project(models.Model):
+      dateTime = models.CharField(max_length=100)
       creator = models.CharField(max_length=100, default='testuser__')
       projectName = models.CharField(max_length=100)
       projectType = models.CharField(max_length=100)

@@ -4,7 +4,7 @@
 <style>
 
 .account-img{
-  height: 20vh;
+  height: 18vh;
 }
 /* .media-body{
   position:relative;
@@ -29,6 +29,16 @@ form{
   margin-bottom: 1vh;
   padding-left:1vw;
 }
+p{
+  margin: 0px;
+}
+h5{
+  margin: .5px;
+}
+small{
+  position: relative;
+  bottom: 0px;
+}
 </style>
 <div class="row" id="main1">
   <div class="col-2"></div>
@@ -39,9 +49,10 @@ form{
       <div class="media1">
         <img class="account-img" src="{{x.projectPicture.url}}">
         <div>
-          <h4>Project Name: {{x.projectName}}</h4>
+          <h5><strong>Project Name: {{x.projectName}}</strong></h5>
           <p>Project Type: {{x.projectType}}</p>
           <p>Creator: {{x.creator}}</p>
+          <p class="text-muted small">Created: {{x.dateTime}}</p>
         </div>
       </div>
       {% endfor %}
