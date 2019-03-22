@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, Project #from db
 
+
 class OurUserForm(UserCreationForm):
     email = forms.EmailField(required='false')
     class Meta: #nested namespace

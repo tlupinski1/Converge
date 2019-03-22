@@ -10,8 +10,12 @@
         Create A Project
       </legend>
       {{ form }}
+      <input id="Creator" type="hidden" name="Creator" maxlength="100" value="{{user}}" required>
     </fieldset>
     <div class="form-group">
+      <p>
+      Creating a Project as user: <strong>{{ user }}</strong>
+      </p>
       <button class="btn btn-outline-info" type="submit">Create Project</button>
     </div>
   </form>

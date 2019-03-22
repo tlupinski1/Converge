@@ -26,6 +26,9 @@ def projectCreation(request):
     form = ProjectForm(request.POST, request.FILES)
     if form.is_valid():
       form.save()
+      obj = Project.objects.get(projectName=form.cleaned_data.get('projectName')) #!!!!!
+      obj.creator = currentUser.username #!!!!!
+      obj.save() #!!!!!!
       projName=form.cleaned_data.get('projectName')
       messages.success(request, f'{projName} has been created')
       return redirect('/publicDashboard')

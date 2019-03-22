@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import django.http.request
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE) #pics is the directory in the MEDIA directory to be saved
@@ -10,6 +11,9 @@ class Profile(models.Model):
         super().save()
 
 class Project(models.Model):
+      creator = models.CharField(max_length=100, default='testuser__')
       projectName = models.CharField(max_length=100)
       projectType = models.CharField(max_length=100)
       projectPicture = models.ImageField(default='pics/defaultProject.png',upload_to='pics/')
+      def save(self):
+          super().save()
