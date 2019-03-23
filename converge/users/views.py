@@ -26,14 +26,16 @@ def projectCreation(request):
   if request.method == 'POST':
     form = ProjectForm(request.POST, request.FILES)
     if form.is_valid():
-      form.save()
-      obj = Project.objects.get(projectName=form.cleaned_data.get('projectName')) #!!!!!
-      obj.creator = currentUser.username #!!!!!
+      form.save(commit=False)
+      prof= Profile.objects.get(user=currentUser.id)
+      #obj = Project.objects.get(projectName=form.cleaned_data.get('projectName')) #!!!!!
+      #form.save()
       now = datetime.datetime.now()
       string1 = now.strftime("%Y-%m-%d %H:%M")
-      obj.dateTime = string1
-      obj.save() #!!!!!!
+      #obj.save() #!!!!!!
       projName=form.cleaned_data.get('projectName')
+      proj = Project(creator=prof,dateTime=string1,projectName=form.cleaned_data.get('projectName'),projectType=form.cleaned_data.get('projectType'),projectPicture=form.cleaned_data.get('projectPicture'))
+      proj.save()
       messages.success(request, f'{projName} has been created')
       return redirect('/publicDashboard')
   else:

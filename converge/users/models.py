@@ -12,7 +12,7 @@ class Profile(models.Model):
 
 class Project(models.Model):
       dateTime = models.CharField(max_length=100)
-      creator = models.CharField(max_length=100, default='testuser__')
+      creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
       projectName = models.CharField(max_length=100)
       projectType = models.CharField(max_length=100)
       projectPicture = models.ImageField(default='pics/defaultProject.png',upload_to='pics/')
