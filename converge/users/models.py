@@ -7,7 +7,7 @@ class Profile(models.Model):
     image = models.ImageField(default='pics/default.png',upload_to='pics/') #needs pillow to be installed
     def __str__(self):
         return f'{self.user.username}\'s profile'
-    def save(self):
+    def save(self,**kwargs):
         super().save()
 
 class Project(models.Model):
@@ -16,5 +16,5 @@ class Project(models.Model):
       projectName = models.CharField(max_length=100)
       projectType = models.CharField(max_length=100)
       projectPicture = models.ImageField(default='pics/defaultProject.png',upload_to='pics/')
-      def save(self):
+      def save(self, **kwargs):
           super().save()
