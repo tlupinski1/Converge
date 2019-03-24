@@ -10,7 +10,7 @@ def allUsers(request):
     users = User.objects.all() #from db
     if(request.method == 'GET'):
         str = request.GET.get('name1')
-        user = User.objects.get(username="jack")
+        user = User.objects.get(username=str)
         users = []
         users.append(user)
         return render(request,'users/allProfiles.html',{'get':str,'profs':users})
