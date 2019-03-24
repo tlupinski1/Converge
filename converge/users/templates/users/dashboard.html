@@ -51,7 +51,7 @@ small{
         <div>
           <h5><strong>Project Name: {{x.projectName}}</strong></h5>
           <p>Project Type: {{x.projectType}}</p>
-          <p>Creator: {{x.creator.user}}</p>
+          <p>Creator: <a href="/allUsers?name1={{x.creator.user}}"> {{x.creator.user}} </a></p>
           <p class="text-muted small">Created: {{x.dateTime}}</p>
         </div>
       </div>

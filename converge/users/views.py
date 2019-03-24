@@ -4,9 +4,16 @@ from django.contrib import messages
 from .forms import OurUserForm, UpdateUser, UpdateProfile, ProjectForm
 from users.models import Profile, User, Project
 import datetime
+from django.http import HttpRequest
 
 def allUsers(request):
     users = User.objects.all() #from db
+    if(request.method == 'GET'):
+        str = request.GET.get('name1')
+        user = User.objects.get(username="jack")
+        users = []
+        users.append(user)
+        return render(request,'users/allProfiles.html',{'get':str,'profs':users})
     return render(request,'users/allProfiles.html',{'profs':users})
 
 def register(request):#register view.
