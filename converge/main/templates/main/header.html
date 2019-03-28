@@ -4,30 +4,52 @@
   <!-- Compiled and minified CSS credit to https://materializecss.com/-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
     <!-- Compiled and minified JavaScript https://materializecss.com/-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body class="blue-grey lighten-4">
+
   <nav>
     <div class="nav-wrapper green accent-3">
       <a href="#" class="brand-logo">ConVerge</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/">Home</a></li>
+        <li><a id="home" href="/">Home</a></li>
         {% if user.is_authenticated %}
-        <li><a href="/logout">Logout</a></li>
-        <li><a href="/profiles">View Your Profile</a></li>
-        <li><a href="/createProject">Create a new Project</a></li>
+        <li><a id="logout" href="/logout">Logout</a></li>
+        <li><a id="profiles" href="/profiles">View Your Profile</a></li>
+        <li><a id="createProject" href="/createProject">Create a new Project</a></li>
         {% else %}
-        <li><a href="/login">Login</a></li>
-        <li><a href="/register">Sign Up</a></li>
+        <li><a id="login" href="/login">Login</a></li>
+        <li><a id="register" href="/register">Sign Up</a></li>
         {% endif %}
-        <li><a href="/publicDashboard">Public Dashboard</a></li>
-        <li><a href="collapsible.html">About Us</a></li>
+        <li><a id="publicDashboard" href="/publicDashboard">Public Dashboard</a></li>
+        <li><a id="aboutUs" href="collapsible.html">About Us</a></li>
       </ul>
     </div>
   </nav>
+  <script>
+    match = 0;
+    loc = window.location.href;
+    headers = ["logout","login","profiles","createProject","register","publicDashboard"];
+    for(var i=0;i<headers.length;i++){
+      if(loc.includes(headers[i])){
+        match = 1;
+        el = document.getElementById(headers[i]);
+        el.style.color = "#00e676";
+        el.style.backgroundColor = "white";
+      };
+    };
+    if(match == 0){
+      el = document.getElementById("home");
+      el.style.color = "#00e676";
+      el.style.backgroundColor = "white";
+    }
+  </script>
   <!-- for django messages!! -->
   {% if messages %}
     {% for message in messages %}
