@@ -71,3 +71,8 @@ def profiles(request):
     } #pass these to the html
     return render(request,'users/profiles.html',context);
 # Create your views here.
+def myProjects(request):
+    user = request.user
+    projects = Project.objects.all() #from db
+    return render(request,'users/myProjects.html',{'proj':projects, 'me':user})
+

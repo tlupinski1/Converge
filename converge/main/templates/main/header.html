@@ -23,19 +23,20 @@
         <li><a id="logout" href="/logout">Logout</a></li>
         <li><a id="profiles" href="/profiles">View Your Profile</a></li>
         <li><a id="createProject" href="/createProject">Create a new Project</a></li>
+        <li><a id="myProjects" href="/myProjects">My Projects</a></li>
         {% else %}
         <li><a id="login" href="/login">Login</a></li>
         <li><a id="register" href="/register">Sign Up</a></li>
         {% endif %}
         <li><a id="publicDashboard" href="/publicDashboard">Public Dashboard</a></li>
-        <li><a id="aboutUs" href="collapsible.html">About Us</a></li>
+        <li><a id="aboutUs" href="aboutus.html">About Us</a></li>
       </ul>
     </div>
   </nav>
   <script>
     match = 0;
     loc = window.location.href;
-    headers = ["logout","login","profiles","createProject","register","publicDashboard"];
+    headers = ["logout","login","profiles","createProject","register","publicDashboard", "myProjects"];
     for(var i=0;i<headers.length;i++){
       if(loc.includes(headers[i])){
         match = 1;
