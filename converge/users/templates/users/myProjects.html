@@ -1,0 +1,67 @@
+{% extends "main/header.html" %}
+
+{% block content%}
+<style>
+
+.account-img{
+  height: 18vh;
+}
+/* .media-body{
+  position:relative;
+  left: 1vw;
+}
+#main1{
+  position:relative;
+  top: 1vh;
+} */
+form{
+  background-color: white;
+  border-radius: 2vh;
+  /* padding: 2vh; */
+}
+.media1{
+  float: left;
+  background-color:white;
+  width: 20vw;
+  height: 20vw;
+  border-radius: 2vh;
+  margin-left: 1vw;
+  margin-bottom: 1vh;
+  padding-left:1vw;
+}
+p{
+  margin: 0px;
+}
+h5{
+  margin: .5px;
+}
+small{
+  position: relative;
+  bottom: 0px;
+}
+</style>
+<div class="row" id="main1">
+  <div class="col-2"></div>
+  <div class="col-9">
+    <div>
+      <h1>My Projects: </h1>
+      {% for x in proj %}
+        {% if x.creator.user == me %}
+          <div class="media1">
+            <img class="account-img" src="{{x.projectPicture.url}}">
+            <div>
+              <h5><strong>Project Name: {{x.projectName}}</strong></h5>
+              <p>Project Type: {{x.projectType}}</p>
+              <p>Creator: <a href="/allUsers?name1={{x.creator.user}}"> {{x.creator.user}} </a></p>
+              <p class="text-muted small">Created: {{x.dateTime}}</p>
+            </div>
+          </div>
+        {% else %}
+          {{pass}}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock%}
