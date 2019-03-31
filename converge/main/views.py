@@ -14,4 +14,7 @@ def login(request):
 def register(request):
   return render(request=request, template_name="main/register.html")
 
+def aboutus(request):
+  return render(request=request, template_name="main/aboutus.html")
+  return HttpResponse("Hello, world. You're at the about us index.")
 # Create your views here.
