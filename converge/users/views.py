@@ -70,9 +70,14 @@ def profiles(request):
         'p': update_profile
     } #pass these to the html
     return render(request,'users/profiles.html',context);
-# Create your views here.
+
 def myProjects(request):
-    user = request.user
-    projects = Project.objects.all() #from db
-    return render(request,'users/myProjects.html',{'proj':projects, 'me':user})
+    user = request.user #find this user
+    projects = Project.objects.all() #all projects
+    userProjects =[] #create a list to hold only the projects related to user
+    for x in projects:
+      if x.creator.user == user:
+        userProjects.append(x)
+
+    return render(request,'users/myProjects.html',locals())
 

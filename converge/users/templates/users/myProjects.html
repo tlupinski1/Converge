@@ -44,21 +44,20 @@ small{
   <div class="col-2"></div>
   <div class="col-9">
     <div>
+      {{userProjects.projectName}}
       <h1>My Projects: </h1>
-      {% for x in proj %}
-        {% if x.creator.user == me %}
+      {% for x in userProjects %}
           <div class="media1">
             <img class="account-img" src="{{x.projectPicture.url}}">
             <div>
               <h5><strong>Project Name: {{x.projectName}}</strong></h5>
               <p>Project Type: {{x.projectType}}</p>
-              <p>Creator: <a href="/allUsers?name1={{x.creator.user}}"> {{x.creator.user}} </a></p>
+              <p>Creator: <a href="/allUsers?name1={{user}}"> {{x.creator.user}} </a></p>
               <p class="text-muted small">Created: {{x.dateTime}}</p>
             </div>
           </div>
-        {% else %}
-          {{pass}}
-        {% endif %}
+      {% empty %}
+        <p>You do not have any projects! <a href="/createProject">Create</a> a project or <a href="/publicDashboard">join</a> one today!</p>
       {% endfor %}
     </div>
   </div>
