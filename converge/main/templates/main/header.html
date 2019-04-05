@@ -11,9 +11,21 @@
     <!-- Compiled and minified JavaScript https://materializecss.com/-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
+<!--dropdown menu script before the rest of the nav bar-->
+
+<ul id="dropdownProject" class="dropdown-content">
+  <li><a id="createProject" href="/createProject">Create a new Project</a></li>
+  <li class="divider"></li>
+  <li><a id="myProjects" href="/myProjects">My Projects</a></li>
+</ul>
+<ul id="dropdownProfile" class="dropdown-content">
+  <li><a id="profiles" href="/profiles">View Your Profile</a></li>
+  <li class="divider"></li>
+  <li><a id="profiles" href="/publicDashboard">Public Dashboard</a></li>
+</ul>
+<!--nav code-->
 
 <body class="blue-grey lighten-4">
-
   <nav>
     <div class="nav-wrapper green accent-3">
       <a href="#" class="brand-logo">ConVerge</a>
@@ -21,23 +33,24 @@
         <li><a id="home" href="/">Home</a></li>
         {% if user.is_authenticated %}
         <li><a id="logout" href="/logout">Logout</a></li>
-        <li><a id="profiles" href="/profiles">View Your Profile</a></li>
-        <li><a id="createProject" href="/createProject">Create a new Project</a></li>
-        <li><a id="myProjects" href="/myProjects">My Projects</a></li>
+        <li><a id="profiles" class="dropdown-trigger" href="#!" data-target="dropdownProfile">Profiles</i></a></li>
+        <li><a id="projects" class="dropdown-trigger" href="#!" data-target="dropdownProject">Projects</i></a></li>
         <li><a id="Polls" href="/polls">Polls</a></li>
         {% else %}
         <li><a id="login" href="/login">Login</a></li>
         <li><a id="register" href="/register">Sign Up</a></li>
-        {% endif %}
         <li><a id="publicDashboard" href="/publicDashboard">Public Dashboard</a></li>
+        {% endif %}
         <li><a id="aboutUs" href="/aboutus.html">About Us</a></li>
+        <!--javascript to trigger dropdown-->
+        <script>$(".dropdown-trigger").dropdown();</script>
       </ul>
     </div>
   </nav>
   <script>
     match = 0;
     loc = window.location.href;
-    headers = ["logout","login","profiles","createProject","register","publicDashboard", "myProjects"];
+    headers = ["logout","login","profiles","createProject","register","publicDashboard", "myProjects", "profiles"];
     for(var i=0;i<headers.length;i++){
       if(loc.includes(headers[i])){
         match = 1;
