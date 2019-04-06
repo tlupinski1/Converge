@@ -11,21 +11,24 @@
     <!-- Compiled and minified JavaScript https://materializecss.com/-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
-<!--dropdown menu script before the rest of the nav bar-->
+<style>
 
-<ul id="dropdownProject" class="dropdown-content">
-  <li><a id="createProject" href="/createProject">Create a new Project</a></li>
-  <li class="divider"></li>
-  <li><a id="myProjects" href="/myProjects">My Projects</a></li>
-</ul>
-<ul id="dropdownProfile" class="dropdown-content">
-  <li><a id="profiles" href="/profiles">View Your Profile</a></li>
-  <li class="divider"></li>
-  <li><a id="profiles" href="/publicDashboard">Public Dashboard</a></li>
-</ul>
-<!--nav code-->
-
+.dc1 {
+  display: none;
+  position: absolute;
+  background-color: #00e676;
+  min-width: 160px;
+  width: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.subDown {
+  font-size: .8em;
+}
+.show {display:block;}
+</style>
 <body class="blue-grey lighten-4">
+
   <nav>
     <div class="nav-wrapper green accent-3">
       <a href="#" class="brand-logo">ConVerge</a>
@@ -33,30 +36,71 @@
         <li><a id="home" href="/">Home</a></li>
         {% if user.is_authenticated %}
         <li><a id="logout" href="/logout">Logout</a></li>
-        <li><a id="profiles" class="dropdown-trigger" href="#!" data-target="dropdownProfile">Profiles</i></a></li>
-        <li><a id="projects" class="dropdown-trigger" href="#!" data-target="dropdownProject">Projects</i></a></li>
+        <li class="drop1"><div class="dropdown">
+          <a class="dc2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Project Menu &#x25BF
+          </a>
+          <div id="dropSub" class="dc1">
+            <a id="publicDashboard" href="/publicDashboard" class="subDown">Public Dashboard</a>
+            <a id="createProject" href="/createProject" class="subDown">Create New Project</a>
+          </div>
+        </div></li>
+        <li class="drop2"><div class="dropdown">
+          <a class="dc2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Project Menu &#x25BF
+          </a>
+          <div id="dropSub2" class="dc1">
+            <a id="profiles" href="/profiles" class="subDown">View Your Profile</a>
+            <a id="myProjects" href="/myProjects" class="subDown">My Projects</a>
+          </div>
+        </div></li>
+        <li></li>
         <li><a id="Polls" href="/polls">Polls</a></li>
         {% else %}
         <li><a id="login" href="/login">Login</a></li>
         <li><a id="register" href="/register">Sign Up</a></li>
-        <li><a id="publicDashboard" href="/publicDashboard">Public Dashboard</a></li>
         {% endif %}
         <li><a id="aboutUs" href="/aboutus.html">About Us</a></li>
-        <!--javascript to trigger dropdown-->
-        <script>$(".dropdown-trigger").dropdown();</script>
       </ul>
     </div>
   </nav>
   <script>
+    function dropSub(x,y) {
+      x = document.getElementById(x);
+      x.classList.remove("hide");
+      x.classList.toggle("show");
+    }
+
+    $(".drop1").click(function(){dropSub("dropSub","dropSub2");})
+    $(".drop2").click(function(){dropSub("dropSub2","dropSub")})
+    window.addEventListener("click", function(event) {
+      if(event.target.className!=='dc2'){
+        x = document.getElementById('dropSub');
+        if(x.classList.contains("show")){
+          x.classList.toggle("show");
+        }
+        x = document.getElementById('dropSub2');
+        if(x.classList.contains("show")){
+          x.classList.toggle("show");
+        }
+      }
+    });
     match = 0;
     loc = window.location.href;
-    headers = ["logout","login","profiles","createProject","register","publicDashboard", "myProjects", "profiles"];
+    headers = ["logout","login","profiles","createProject","register","publicDashboard", "myProjects"];
     for(var i=0;i<headers.length;i++){
       if(loc.includes(headers[i])){
         match = 1;
-        el = document.getElementById(headers[i]);
-        el.style.color = "#00e676";
-        el.style.backgroundColor = "white";
+        if(headers[i]=="profiles" || headers[i]=="createProject" || headers[i]=="myProjects" || headers[i]=="publicDashboard"){
+          el = document.getElementById(headers[i]);
+          el = el.parentElement.parentElement;
+          el.firstElementChild.style.color = "#00e676";
+          el.style.backgroundColor = "white";
+        }else{
+          el = document.getElementById(headers[i]);
+          el.style.color = "#00e676";
+          el.style.backgroundColor = "white";
+        }
       };
     };
     if(match == 0){
