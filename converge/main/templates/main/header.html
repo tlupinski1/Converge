@@ -34,8 +34,11 @@
       <a href="#" class="brand-logo">ConVerge</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a id="home" href="/">Home</a></li>
-        {% if user.is_authenticated %}
-        <li><a id="logout" href="/logout">Logout</a></li>
+        {% if not user.is_authenticated %}
+        <li><a id="login" href="/login">Login</a></li>
+        <li><a id="register" href="/register">Sign Up</a></li>
+        <li><a id="aboutUs" href="/aboutus.html">About Us</a></li>
+        {% else %}
         <li class="drop1"><div class="dropdown">
           <a class="dc2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Project Menu &#x25BF
@@ -47,7 +50,7 @@
         </div></li>
         <li class="drop2"><div class="dropdown">
           <a class="dc2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Project Menu &#x25BF
+          Profile Menu &#x25BF
           </a>
           <div id="dropSub2" class="dc1">
             <a id="profiles" href="/profiles" class="subDown">View Your Profile</a>
@@ -56,11 +59,9 @@
         </div></li>
         <li></li>
         <li><a id="Polls" href="/polls">Polls</a></li>
-        {% else %}
-        <li><a id="login" href="/login">Login</a></li>
-        <li><a id="register" href="/register">Sign Up</a></li>
-        {% endif %}
         <li><a id="aboutUs" href="/aboutus.html">About Us</a></li>
+        <li><a id="logout" href="/logout">Logout</a></li>
+        {% endif %}
       </ul>
     </div>
   </nav>
