@@ -15,6 +15,19 @@ class Project(models.Model):
       creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
       projectName = models.CharField(max_length=100)
       projectType = models.CharField(max_length=100)
+      textArea = models.TextField(max_length=10000,default="add info / planning here")
       projectPicture = models.ImageField(default='pics/defaultProject.png',upload_to='pics/')
       def save(self, **kwargs):
           super().save()
+
+class Files(models.Model):
+    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+    file = models.CharField(max_length=100)
+    def save(self, **kwargs):
+        super().save()
+
+class Links(models.Model):
+    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+    link = models.CharField(max_length=100)
+    def save(self, **kwargs):
+        super().save()

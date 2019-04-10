@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import OurUserForm, UpdateUser, UpdateProfile, ProjectForm
+from .forms import OurUserForm, UpdateUser, UpdateProfile, ProjectForm, textForm
 from users.models import Profile, User, Project
 import datetime
 from django.http import HttpRequest
+from django import forms
 
 def allUsers(request):
     users = User.objects.all() #from db
@@ -53,6 +54,17 @@ def dashboard(request):
     projects = Project.objects.all() #from db
     return render(request,'users/dashboard.html',{'proj':projects})
 
+def projectPage(request):
+    form = textForm()
+    projects = Project.objects.all() #from db
+    if(request.method == 'GET'):
+        str = request.GET.get('proj1')
+        proj = Project.objects.get(projectName=str)
+        projs = []
+        projs.append(proj)
+        return render(request,'users/projectPage.html',{'get':str,'projs':projs, 'form':form})
+    return render(request,'users/projectPage.html');
+
 def profiles(request):
     if request.method == 'POST':
         update_user = UpdateUser(request.POST, instance=request.user)
@@ -80,4 +92,3 @@ def myProjects(request):
         userProjects.append(x)
 
     return render(request,'users/myProjects.html',locals())
-

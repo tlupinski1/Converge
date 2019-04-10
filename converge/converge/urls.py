@@ -33,7 +33,8 @@ urlpatterns = [
     path('createProject/',user_views.projectCreation,name="projectCreation"),
     path('publicDashboard/',user_views.dashboard,name="dash"),
     path('',main_views.home,name="main-home"),
-    path('myProjects/', user_views.myProjects, name='myProjects')
+    path('myProjects/', user_views.myProjects, name='myProjects'),
+    path('projectPage/',user_views.projectPage,name="projPage"),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

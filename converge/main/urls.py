@@ -25,5 +25,4 @@ urlpatterns = [
 	path("login.html",views.login,name="main-login"),
     path("register.html",views.register,name="main-reg"),
     path("aboutus.html",views.aboutus,name="about-us"),
-
 ]

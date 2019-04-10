@@ -25,3 +25,9 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['projectName','projectType','projectPicture']
+
+class textForm(forms.ModelForm):
+    textArea = forms.Textarea(attrs={'rows':15, 'cols':15})
+    class Meta:
+        model = Project
+        fields = ['textArea']
