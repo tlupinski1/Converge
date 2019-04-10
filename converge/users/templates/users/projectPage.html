@@ -1,0 +1,104 @@
+{% extends "main/header.html" %}
+
+{% block content%}
+<style>
+.area{
+  background-color: white;
+  height: 50vh;
+  width: 50vw;
+  border-radius: 3vh;
+}
+em{
+  text-decoration: underline;
+  font-style: normal;
+}
+textarea{
+  height: 80%;
+}
+</style>
+<script>
+window.onload=function() {
+  $.ajaxSetup({
+     beforeSend: function(xhr, settings) {
+         function getCookie(name) {
+             var cookieValue = null;
+             if (document.cookie && document.cookie != '') {
+                 var cookies = document.cookie.split(';');
+                 for (var i = 0; i < cookies.length; i++) {
+                     var cookie = jQuery.trim(cookies[i]);
+                     // Does this cookie string begin with the name we want?
+                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                         break;
+                     }
+                 }
+             }
+             return cookieValue;
+         }
+         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+             // Only send the token to relative URLs i.e. locally.
+             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+         }
+     }
+});
+function create_post(){
+  console.log("running create post");
+  $.ajax({
+       url : "/projectPage/", // the endpoint
+       type : "POST", // http method
+       data : { the_post : $('#post-text').val() }, // data sent with the post request
+
+       // handle a successful response
+       success : function(json) {
+           $('#post-text').val(''); // remove the value from the input
+           console.log(json); // log the returned json to the console
+           console.log("success"); // another sanity check
+       },
+
+       // handle a non-successful response
+       error : function(xhr,errmsg,err) {
+           console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+       }
+   });
+};
+$('#postForm').submit(function(event){
+  event.preventDefault();
+  console.log($('#post-text').val());
+  create_post();
+});
+};
+</script>
+<h3> Welcome to project <em>{{projs.0.projectName}}</em> by <em>{{projs.0.creator.user}}</em></h3>
+<div class="row" id="main1">
+  <div class="col-1">
+  </div>
+  <div class="col-6 area">
+    <p>Proposal:</p>
+    <div class="fieldWrapper">
+      <form id="postForm" method="POST">
+      {% csrf_token %}
+      {{ form.textArea }}
+      <button class="btn btn-outline-info" type="submit" action="/projectPage/" value="Post">Save</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-1">
+  </div>
+  <div class="col-3 area">
+    <p>Related Files:</p>
+  </div>
+</div>
+<div class="row" id="main1">
+  <div class="col-1">
+  </div>
+  <div class="col-6 area">
+    <p>Discussion:</p>
+  </div>
+  <div class="col-1">
+  </div>
+  <div class="col-3 area">
+    <p>Related Sites:</p>
+  </div>
+</div>
+</div>
+{% endblock%}
