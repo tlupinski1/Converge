@@ -28,9 +28,14 @@ class ProjectForm(forms.ModelForm):
 
 class textForm(forms.ModelForm):
     textArea = forms.Textarea(attrs={'id':'form_id', 'rows':15, 'cols':15})
+    fileUpload = forms.FileField(
+        label='Select a file',
+        help_text='max. 42 megabytes'
+    )
+    urlUpload = forms.CharField(max_length=100)
     class Meta:
         model = Project
-        fields = ['textArea']
+        fields = ['textArea','fileUpload','urlUpload']
         widgets = {
             'textArea': forms.Textarea(attrs={
                 'id': 'post-text',
