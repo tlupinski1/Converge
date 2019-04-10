@@ -24,7 +24,9 @@ def register(request):#register view.
       form.save()
       username=form.cleaned_data.get('username')
       messages.success(request, f'Account Created for {username} Try to log in')
-      return redirect('login')
+      return redirect('login') 
+    else: #error message if the form is not valid
+      messages.warning(request,form.errors)
   else:
     form = OurUserForm()
   return render(request,'users/register.html',{'form':form});
