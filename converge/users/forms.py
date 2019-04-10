@@ -27,7 +27,13 @@ class ProjectForm(forms.ModelForm):
         fields = ['projectName','projectType','projectPicture']
 
 class textForm(forms.ModelForm):
-    textArea = forms.Textarea(attrs={'rows':15, 'cols':15})
+    textArea = forms.Textarea(attrs={'id':'form_id', 'rows':15, 'cols':15})
     class Meta:
         model = Project
         fields = ['textArea']
+        widgets = {
+            'textArea': forms.Textarea(attrs={
+                'id': 'post-text',
+                'required': True
+            }),
+        }

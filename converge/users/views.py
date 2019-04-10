@@ -57,6 +57,10 @@ def dashboard(request):
 def projectPage(request):
     form = textForm()
     projects = Project.objects.all() #from db
+    str = request.GET.get('proj1')
+    proj = Project.objects.get(projectName=str)
+    projs = []
+    projs.append(proj)
     if(request.method == 'GET'):
         str = request.GET.get('proj1')
         proj = Project.objects.get(projectName=str)
@@ -64,7 +68,14 @@ def projectPage(request):
         projs.append(proj)
         return render(request,'users/projectPage.html',{'get':str,'projs':projs, 'form':form})
     if (request.method == 'POST'):
-        return redirect('/home') #TODO
+        post_text = request.POST.get('the_post')
+        response_data = {}
+        post = Project(textArea=post_text)
+        post.save()
+        return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json"
+        )
     return render(request,'users/projectPage.html');
 
 def profiles(request):
