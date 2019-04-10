@@ -63,6 +63,8 @@ def projectPage(request):
         projs = []
         projs.append(proj)
         return render(request,'users/projectPage.html',{'get':str,'projs':projs, 'form':form})
+    if (request.method == 'POST'):
+        return redirect('/home') #TODO
     return render(request,'users/projectPage.html');
 
 def profiles(request):
