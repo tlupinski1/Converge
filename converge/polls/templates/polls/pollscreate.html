@@ -3,9 +3,9 @@
 {% block content%}
 <div class="container">
   <h1> Polls </h1>
-  <form method= 'Post'>
+  <form method='POST'> {% csrf_token %}
     {{ form.as_p }}
-  <input type="submit"></input>
+  <input type="submit" value='Save'/>
   </form>
 </div>
 {% endblock%}
