@@ -38,7 +38,6 @@
         {% if not user.is_authenticated %}
         <li><a id="login" href="/login">Login</a></li>
         <li><a id="register" href="/register">Sign Up</a></li>
-        <li><a id="aboutUs" href="/aboutus.html">About Us</a></li>
         {% else %}
         <li class="drop1"><div class="dropdown">
           <a class="dc2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,9 +59,10 @@
         </div></li>
         <li></li>
         <li><a id="Polls" href="/polls">Polls</a></li>
-        <li><a id="aboutUs" href="/aboutus.html">About Us</a></li>
+
         <li><a id="logout" href="/logout">Logout</a></li>
         {% endif %}
+        <li><a id="aboutUs" href="/aboutus.html">About Us</a></li>
       </ul>
     </div>
   </nav>
