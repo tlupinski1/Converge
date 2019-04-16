@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, Project #from db
-
+from .models import Profile, Project, Polls#from db
 
 class OurUserForm(UserCreationForm):
     email = forms.EmailField(required='false')
@@ -42,3 +41,14 @@ class textForm(forms.ModelForm):
                 'required': True
             }),
         }
+
+
+
+class PollsForm(forms.ModelForm):
+    class Meta:
+        model = Polls
+        fields = [
+        'polls_id',
+        'title',
+        'questions',
+        ]

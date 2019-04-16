@@ -6,6 +6,7 @@ from users.models import Profile, User, Project
 import datetime
 from django.http import HttpRequest
 from django import forms
+from users.forms import PollsForm
 
 def allUsers(request):
     users = User.objects.all() #from db
@@ -24,7 +25,7 @@ def register(request):#register view.
       form.save()
       username=form.cleaned_data.get('username')
       messages.success(request, f'Account Created for {username} Try to log in')
-      return redirect('login') 
+      return redirect('login')
     else: #error message if the form is not valid
       messages.warning(request,form.errors)
   else:
@@ -107,3 +108,13 @@ def myProjects(request):
         userProjects.append(x)
 
     return render(request,'users/myProjects.html',locals())
+
+def polls_create(request):
+    form = PollsForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    context = {
+        'form': form
+    }
+    return render(request,"users/pollscreate.html", context)

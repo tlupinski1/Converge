@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import django.http.request
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE) #pics is the directory in the MEDIA directory to be saved
     image = models.ImageField(default='pics/default.png',upload_to='pics/') #needs pillow to be installed
@@ -31,3 +32,8 @@ class Links(models.Model):
     link = models.CharField(max_length=100)
     def save(self, **kwargs):
         super().save()
+
+class Polls(models.Model):
+    polls_id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=120)
+    questions = models.CharField(max_length=120)
