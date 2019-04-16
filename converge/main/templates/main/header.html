@@ -58,11 +58,11 @@
           </div>
         </div></li>
         <li></li>
-        <li><a id="Polls" href="/polls">Polls</a></li>
+        <li><a id="polls" href="/polls">Polls</a></li>
 
         <li><a id="logout" href="/logout">Logout</a></li>
         {% endif %}
-        <li><a id="aboutUs" href="/aboutus.html">About Us</a></li>
+        <li><a id="aboutus" href="/aboutus.html">About Us</a></li>
       </ul>
     </div>
   </nav>
@@ -89,7 +89,7 @@
     });
     match = 0;
     loc = window.location.href;
-    headers = ["logout","login","profiles","createProject","register","publicDashboard", "myProjects"];
+    headers = ["logout","login","profiles","createProject","register","publicDashboard", "myProjects", "aboutus", "polls"];
     for(var i=0;i<headers.length;i++){
       if(loc.includes(headers[i])){
         match = 1;
