@@ -23,7 +23,7 @@ class UpdateProfile(forms.ModelForm):
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ['projectName','projectType','projectPicture']
+        fields = ['projectName','projectType', 'projectDescription', 'projectPicture']
 
 class textForm(forms.ModelForm):
     textArea = forms.Textarea(attrs={'id':'form_id', 'rows':15, 'cols':15})
