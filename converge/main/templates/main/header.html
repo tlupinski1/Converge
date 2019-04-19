@@ -32,7 +32,7 @@
 
   <nav>
     <div class="nav-wrapper green accent-3">
-      <a href="#" class="brand-logo" style="margin-left:27%">ConVerge</a>
+      <a href="#" class="brand-logo" style="margin-left:20%">ConVerge</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a id="home" href="/">Home</a></li>
         {% if not user.is_authenticated %}
@@ -46,23 +46,24 @@
           <div id="dropSub" class="dc1">
             <a id="publicDashboard" href="/publicDashboard" class="subDown">Public Dashboard</a>
             <a id="createProject" href="/createProject" class="subDown">Create New Project</a>
-          </div>
-        </div></li>
-        <li class="drop2"><div class="dropdown">
-          <a class="dc2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Profile Menu &#x25BF
-          </a>
-          <div id="dropSub2" class="dc1">
-            <a id="profiles" href="/profiles" class="subDown">View Your Profile</a>
             <a id="myProjects" href="/myProjects" class="subDown">My Projects</a>
           </div>
         </div></li>
-        <li></li>
+        <li><a id="profiles" href="/profiles">Profile</a></li>
+
         <li><a id="polls" href="/polls">Polls</a></li>
 
         <li><a id="logout" href="/logout">Logout</a></li>
         {% endif %}
-        <li><a id="aboutus" href="/aboutus.html">About Us</a></li>
+        <li class="drop2"><div class="dropdown">
+          <a class="dc2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          About us &#x25BF
+          </a>
+          <div id="dropSub2" class="dc1">
+            <a id="FAQ" href="/FAQ.html" class="subDown">FAQ</a>
+            <a id="meetus" href="/aboutus.html" class="subDown">Meet us</a>
+          </div>
+        </div></li>
       </ul>
     </div>
   </nav>
@@ -93,7 +94,7 @@
     for(var i=0;i<headers.length;i++){
       if(loc.includes(headers[i])){
         match = 1;
-        if(headers[i]=="profiles" || headers[i]=="createProject" || headers[i]=="myProjects" || headers[i]=="publicDashboard"){
+        if(headers[i]=="FAQ" || headers[i]=="createProject" || headers[i]=="myProjects" || headers[i]=="publicDashboard" || headers[i]=="meetus"){
           el = document.getElementById(headers[i]);
           el = el.parentElement.parentElement;
           el.firstElementChild.style.color = "#00e676";

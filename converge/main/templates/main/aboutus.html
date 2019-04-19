@@ -4,21 +4,106 @@
 
 {% block content%}
 
-<br>
-<strong><center><p> ~ About ConVerge ~ </p></center></strong>
+<style>
 
-<strong><center><p> - What is ConVerge? - </p></center></strong>
-<strong><center><p> - How does ConVerge Work? - </p></center></strong>
-<strong><center><p> - Who is ConVerge for? - </p></center></strong>
-<strong><center><p> ~ About Us ~ </p></center></strong>
-<strong><center><p> Kelly Martin </p></center></strong>
-<center><p> Kelly Martin is currently pursuing her Master’s Degree in Software Engineering at Southern Connecticut State University in New Haven, CT. She received her undergrad in music industry at Northeastern University in Boston, Ma. She enjoys music, programming, cooking, makeup and pets. </p></center>
-<strong><center><p> Jack Bonadies </p></center></strong>
-<center><p> Jack Bonadies is a current Master’s student.  Jack enjoys web development and the related fields of network programming, object oriented development, graphics programming, and event driven architecture.  They enjoy learning new technologies, frameworks, literature, and music.  Please message them if you are interested in converging on projects! </p></center>
-<strong><center><p> Gero Albeirno </p></center></strong>
-<center><p> Gero Alberino is currently pursuing a graduate degree in Computer Science. Mostly Gero splits his time between music, skateboarding, writing and software development. Thus making Gero not only a contributor to ConVerge, but an active member of the community. </p></center>
-<strong><center><p> Tomasz Lupinski </p></center></strong>
-<center><p> Tomasz Lupinski is currently a Master’s Student at Southern Connecticut State University. Originally an undergrad in music, Tomasz decided to pursue a career in software engineering after exploring music through programming. Currently working in the field of AI and machine learning, he enjoys music, programming, video games, and taking long hikes.  </p></center>
+/* Three columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  margin-bottom: 16px;
+  padding: 10 10px;
+}
 
+/* Display the columns below each other instead of side by side on small screens *
+
+/* Add some shadows to create a card effect */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Some left and right padding inside the container */
+.container {
+  padding: 0 16px;
+}
+
+/* Clear floats */
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+</style>
+
+
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="/images/pics/defaultProject.png" alt="Kelly" style="width:100%">
+      <div class="container">
+        <h2>Kelly Martin</h2>
+        <p class="title">Team member</p>
+        <p>Kelly Martin is currently pursuing her Master’s Degree in Software Engineering at Southern Connecticut State University in New Haven, CT. She received her undergrad in music industry at Northeastern University in Boston, Ma. She enjoys music, programming, cooking, makeup and pets.</p>
+        <p>example@example.com</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="/images/pics/defaultProject.png" alt="Jack" style="width:100%">
+      <div class="container">
+        <h2>Jack Bonadies</h2>
+        <p class="title">Team member</p>
+        <p>Jack Bonadies is a current Master’s student.  Jack enjoys web development and the related fields of network programming, object oriented development, graphics programming, and event driven architecture.  They enjoy learning new technologies, frameworks, literature, and music.  Please message them if you are interested in converging on projects!</p>
+        <p>example@example.com</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="/images/pics/defaultProject.png" alt="Gero" style="width:100%">
+      <div class="container">
+        <h2>Gero Alberino</h2>
+        <p class="title">Team member</p>
+        <p>Gero Alberino is currently pursuing a graduate degree in Computer Science. Mostly Gero splits his time between music, skateboarding, writing and software development. Thus making Gero not only a contributor to ConVerge, but an active member of the community.</p>
+        <p>example@example.com</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="column">
+    <div class="card">
+      <img src="/images/pics/defaultProject.png" alt="Tomasz" style="width:100%">
+      <div class="container">
+        <h2>Tomasz Lupinski</h2>
+        <p class="title">Team member</p>
+        <p>Tomasz Lupinski is currently a Master’s Student at Southern Connecticut State University. Originally an undergrad in music, Tomasz decided to pursue a career in software engineering after exploring music through programming. Currently working in the field of AI and machine learning, he enjoys music, programming, video games, and taking long hikes.</p>
+        <p>example@example.com</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock%}
