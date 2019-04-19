@@ -50,5 +50,9 @@ class PollsForm(forms.ModelForm):
         fields = [
         'polls_id',
         'title',
-        'questions',
+        'questionOne',
+        'questionTwo',
+        'questionThree',
+        'questionFour',
+        'questionFive',
         ]

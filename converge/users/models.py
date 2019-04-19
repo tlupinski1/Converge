@@ -35,5 +35,9 @@ class Links(models.Model):
 
 class Polls(models.Model):
     polls_id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=120)
-    questions = models.CharField(max_length=120)
+    title = models.CharField(max_length=120, default='Enter a Title for your Poll')
+    questionOne = models.CharField(max_length=120, default='Enter a Question')
+    questionTwo = models.CharField(max_length=120, default='Enter a Question')
+    questionThree = models.CharField(max_length=120, default='Enter a Question')
+    questionFour = models.CharField(max_length=120, default='Enter a Question')
+    questionFive = models.CharField(max_length=120, default='Enter a Question')
