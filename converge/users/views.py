@@ -45,7 +45,7 @@ def projectCreation(request):
       string1 = now.strftime("%Y-%m-%d %H:%M")
       #obj.save() #!!!!!!
       projName=form.cleaned_data.get('projectName')
-      proj = Project(creator=prof,dateTime=string1,projectName=form.cleaned_data.get('projectName'),projectType=form.cleaned_data.get('projectType'),projectPicture=form.cleaned_data.get('projectPicture'))
+      proj = Project(creator=prof,dateTime=string1,projectName=form.cleaned_data.get('projectName'),projectType=form.cleaned_data.get('projectType'),projectDescription=form.cleaned_data.get('projectDescription'),projectPicture=form.cleaned_data.get('projectPicture'))
       proj.save()
       messages.success(request, f'{projName} has been created')
       return redirect('/publicDashboard')

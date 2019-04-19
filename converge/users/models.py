@@ -16,6 +16,7 @@ class Project(models.Model):
       creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
       projectName = models.CharField(max_length=100)
       projectType = models.CharField(max_length=100)
+      projectDescription = models.CharField(max_length=500)
       textArea = models.TextField(max_length=10000,default="add info / planning here")
       projectPicture = models.ImageField(default='pics/defaultProject.png',upload_to='pics/')
       def save(self, **kwargs):
