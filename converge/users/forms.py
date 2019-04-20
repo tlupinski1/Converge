@@ -49,6 +49,7 @@ class PollsForm(forms.ModelForm):
         model = Polls
         fields = [
         'polls_id',
+        'creator',
         'title',
         'questionOne',
         'questionTwo',

@@ -37,6 +37,7 @@ class Links(models.Model):
 
 class Polls(models.Model):
     polls_id = models.AutoField(primary_key=True)
+    creator = models.ForeignKey(Profile, on_delete=models.CASCADE, default='Not Logged IN')
     title = models.CharField(max_length=120, default='Enter a Title for your Poll')
     questionOne = models.CharField(max_length=120, default='Enter a Question')
     questionTwo = models.CharField(max_length=120, default='Enter a Question')
