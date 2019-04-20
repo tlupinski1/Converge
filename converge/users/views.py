@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import OurUserForm, UpdateUser, UpdateProfile, ProjectForm, textForm
-from users.models import Profile, User, Project
+from .forms import OurUserForm, UpdateUser, UpdateProfile, ProjectForm, textForm, PollsForm
+from users.models import Profile, User, Project, Polls
 import datetime
 from django.http import HttpRequest
 from django import forms
@@ -110,11 +110,32 @@ def myProjects(request):
     return render(request,'users/myProjects.html',locals())
 
 def polls_create(request):
-    form = PollsForm(request.POST or None)
-    if form.is_valid():
-        form.save()
+    currentUser = request.user
+    if request.method == 'POST':
+      form = PollsForm(request.POST, request.FILES)
+      if form.is_valid():
+        form.save(commit=False)
+        prof = Profile.objects.get(user= currentUser)
+        #obj = Project.objects.get(projectName=form.cleaned_data.get('projectName')) #!!!!!
+        #form.save()
 
-    context = {
-        'form': form
-    }
-    return render(request,"users/pollscreate.html", context)
+        #obj.save() #!!!!!!
+        polls = Polls(creator= prof, title=form.cleaned_data.get('title'),questionOne=form.cleaned_data.get('questionOne'),questionTwo=form.cleaned_data.get('questionTwo'),questionThree=form.cleaned_data.get('questionThree'),questionFour=form.cleaned_data.get('questionFour'),questionFive=form.cleaned_data.get('questionFive'))
+        polls.save()
+        messages.success(request, 'Poll has been created')
+        return redirect('/polls')
+    else:
+      form = PollsForm()
+    return render(request,'users/pollsCreate.html',{'form':form,'creator':currentUser});
+
+
+
+
+    #form = PollsForm(request.POST or None)
+    #if form.is_valid():
+    #    form.save()
+
+    #context = {
+    #    'form': form
+    #}
+    #return render(request,"users/pollscreate.html", context)
