@@ -32,9 +32,9 @@
 
   <nav>
     <div class="nav-wrapper green accent-3">
-      <a href="#" class="brand-logo" style="margin-left:20%">ConVerge</a>
+      <a href="/" class="brand-logo" id='home' style="margin-left:20%">ConVerge</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a id="home" href="/">Home</a></li>
+        <li><a id="allUsers" href="/allUsers">Users</a></li>
         {% if not user.is_authenticated %}
         <li><a id="login" href="/login">Login</a></li>
         <li><a id="register" href="/register">Sign Up</a></li>
@@ -90,7 +90,7 @@
     });
     match = 0;
     loc = window.location.href;
-    headers = ["logout","login","profiles","createProject","register","publicDashboard", "myProjects", "aboutus", "polls"];
+    headers = ["logout","login","profiles","createProject","register","publicDashboard", "myProjects", "aboutus", "polls", 'allUsers'];
     for(var i=0;i<headers.length;i++){
       if(loc.includes(headers[i])){
         match = 1;

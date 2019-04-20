@@ -9,14 +9,16 @@ from django import forms
 from users.forms import PollsForm
 
 def allUsers(request):
-    users = User.objects.all() #from db
+    users = User.objects.all()
+    '''Following code makes the allUsers page break?
     if(request.method == 'GET'):
-        str = request.GET.get('name1')
-        user = User.objects.get(username=str)
-        users = []
-        users.append(user)
-        return render(request,'users/allProfiles.html',{'get':str,'profs':users})
-    return render(request,'users/allProfiles.html',{'profs':users})
+      str = request.GET.get('name1')
+      user = User.objects.get(username=str)
+      users = []
+      users.append(user)
+      return render(request,'users/allUsers.html',{'get':str,'profs':users})
+'''
+    return render(request,'users/allUsers.html',{'profs':users})
 
 def register(request):#register view.
   if request.method == 'POST':
