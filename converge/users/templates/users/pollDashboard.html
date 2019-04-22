@@ -1,0 +1,61 @@
+{% extends "main/header.html" %}
+
+{% block content%}
+<style>
+
+.account-img{
+  height: 18vh;
+}
+/* .media-body{
+  position:relative;
+  left: 1vw;
+}
+#main1{
+  position:relative;
+  top: 1vh;
+} */
+form{
+  background-color: white;
+  border-radius: 2vh;
+  /* padding: 2vh; */
+}
+.poll_box{
+  float: center;
+  background-color:white;
+  width: 90%;
+  height: 10%;
+  border-radius: 2vh;
+  margin-left: 1vw;
+  margin-bottom: 1vh;
+  padding-left:1vw;
+}
+p{
+  margin: 0px;
+}
+h5{
+  margin: .5px;
+}
+small{
+  position: relative;
+  bottom: 0px;
+}
+</style>
+<div class="row" id="main1">
+  <div class="col-2"></div>
+  <div class="col-9">
+    <div>
+      <h1>All Public Polls: </h1>
+      {% for x in polls %}
+      <div class="poll_box">
+        <a href="/projectPage?proj1={{x.title}}"></a>
+        <div>
+          <h5><strong>Poll Name: {{x.title}}</strong></h5>
+          <p>Poll Creator: <a href="/allUsers?name1={{x.creator.user}}"> {{x.creator.user}} </a></p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock%}

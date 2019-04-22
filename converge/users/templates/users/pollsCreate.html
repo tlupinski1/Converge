@@ -3,8 +3,59 @@
 {% block content%}
 <div class="container">
   <h1> Polls </h1>
-  <form method='POST'> {% csrf_token %}
-    {{ form.as_p }}
+  <form action="." method='POST'> {% csrf_token %}
+    {{ q_form.title }}
+
+    {{ q_form.questionOne }}
+    {% for choice in a_form.answerOne.field.choices %}
+    <li>
+	    <label>
+	      <input type="radio" name="answerOne" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+    </li>
+    {% endfor %}
+
+    {{ q_form.questionTwo }}
+    {% for choice in a_form.answerTwo.field.choices %}
+    <li>
+	    <label>
+	      <input type="radio" name="answerTwo" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+    </li>
+    {% endfor %}
+
+    {{ q_form.questionThree }}
+    {% for choice in a_form.answerThree.field.choices %}
+    <li>
+	    <label>
+	      <input type="radio" name="answerThree" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+    </li>
+    {% endfor %}
+
+    {{ q_form.questionFour }}
+    {% for choice in a_form.answerFour.field.choices %}
+    <li>
+	    <label>
+	      <input type="radio" name="answerFour" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+    </li>
+    {% endfor %}
+
+    {{ q_form.questionFive }}
+    {% for choice in a_form.answerFive.field.choices %}
+    <li>
+	    <label>
+	      <input type="radio" name="answerFive" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+    </li>
+    {% endfor %}
+
   <input type="submit" value='Save'/>
   </form>
 </div>

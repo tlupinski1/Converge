@@ -1,12 +1,29 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import OurUserForm, UpdateUser, UpdateProfile, ProjectForm, textForm, PollsForm
-from users.models import Profile, User, Project, Polls
+from .forms import OurUserForm, UpdateUser, UpdateProfile, ProjectForm, textForm, PollsForm, AnswerForm
+from users.models import Profile, User, Project, Polls, PollAnswers
 import datetime
 from django.http import HttpRequest
 from django import forms
 from users.forms import PollsForm
+import sys
+import logging, logging.config
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+        }
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO'
+    }
+}
+logging.config.dictConfig(LOGGING)
 
 def allUsers(request):
     users = User.objects.all()
@@ -58,6 +75,10 @@ def projectCreation(request):
 def dashboard(request):
     projects = Project.objects.all() #from db
     return render(request,'users/dashboard.html',{'proj':projects})
+
+def pollsDashboard(request):
+    polls = Polls.objects.all() #from db
+    return render(request,'users/pollDashboard.html',{'polls':polls})
 
 def projectPage(request):
     form = textForm()
@@ -114,21 +135,31 @@ def myProjects(request):
 def polls_create(request):
     currentUser = request.user
     if request.method == 'POST':
-      form = PollsForm(request.POST, request.FILES)
-      if form.is_valid():
-        form.save(commit=False)
+      question_form = PollsForm(request.POST, request.FILES)
+      answer_form = AnswerForm(request.POST, request.FILES)
+      logging.info("Question Is Valid: " + str(question_form.is_valid()))
+      logging.info("Answer Is Valid: " + str(answer_form.is_valid()))
+      if question_form.is_valid() and answer_form.is_valid():
+        logging.info("Both Forms Valid")
+        question_form.save(commit=False)
+        answer_form.save(commit=False)
         prof = Profile.objects.get(user= currentUser)
         #obj = Project.objects.get(projectName=form.cleaned_data.get('projectName')) #!!!!!
         #form.save()
 
         #obj.save() #!!!!!!
-        polls = Polls(creator= prof, title=form.cleaned_data.get('title'),questionOne=form.cleaned_data.get('questionOne'),questionTwo=form.cleaned_data.get('questionTwo'),questionThree=form.cleaned_data.get('questionThree'),questionFour=form.cleaned_data.get('questionFour'),questionFive=form.cleaned_data.get('questionFive'))
+        answers = PollAnswers(creator=prof, title=question_form.cleaned_data.get('title'), answerOne=answer_form.cleaned_data.get('answerOne'),answerTwo=answer_form.cleaned_data.get('answerTwo'),answerThree=answer_form.cleaned_data.get('answerThree'),answerFour=answer_form.cleaned_data.get('answerFour'),answerFive=answer_form.cleaned_data.get('answerFive'))
+        polls = Polls(creator= prof, title=question_form.cleaned_data.get('title'),questionOne=question_form.cleaned_data.get('questionOne'),questionTwo=question_form.cleaned_data.get('questionTwo'),questionThree=question_form.cleaned_data.get('questionThree'),questionFour=question_form.cleaned_data.get('questionFour'),questionFive=question_form.cleaned_data.get('questionFive'))
         polls.save()
+        answers.save()
         messages.success(request, 'Poll has been created')
-        return redirect('/polls')
+        return redirect('/pollDashboard')
     else:
-      form = PollsForm()
-    return render(request,'users/pollsCreate.html',{'form':form,'creator':currentUser});
+        logging.info("Didnt Save")
+
+        question_form = PollsForm()
+        answer_form = AnswerForm()
+    return render(request,'users/pollsCreate.html',{'q_form':question_form, 'a_form':answer_form,'creator':currentUser})
 
 
 

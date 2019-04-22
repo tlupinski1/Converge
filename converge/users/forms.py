@@ -1,7 +1,28 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, Project, Polls#from db
+from .models import Profile, Project, Polls, PollAnswers#from db
+from django.utils.safestring import mark_safe
+
+CHOICES=(
+    (1,"Strongly Disagree"),
+    (2,"Disagree"),
+    (3,"Neutral"),
+    (4,"Agree"),
+    (5,"Strongly Agree")
+)
+
+class HorizontalRadioSelect(forms.RadioSelect):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        css_style = 'style="display: inline-block; margin-right: 10px;"'
+
+        self.renderer.inner_html = '<li ' + css_style + '>{choice_value}{sub_widgets}</li>'
+
+
+
 
 class OurUserForm(UserCreationForm):
     email = forms.EmailField(required='false')
@@ -42,14 +63,30 @@ class textForm(forms.ModelForm):
             }),
         }
 
+class AnswerForm(forms.ModelForm):
+    title = forms.CharField(max_length=100, required=True)
+    answerOne = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES, required=True)
+    answerTwo = forms.ChoiceField(widget=forms.Select, choices=CHOICES, required=True)
+    answerThree = forms.ChoiceField(widget=forms.Select, choices=CHOICES, required=True)
+    answerFour = forms.ChoiceField(widget=forms.Select, choices=CHOICES, required=True)
+    answerFive = forms.ChoiceField(widget=forms.Select, choices=CHOICES, required=True)
+
+    class Meta:
+        model = PollAnswers
+        fields = [
+            'answerOne',
+            'answerTwo',
+            'answerThree',
+            'answerFour',
+            'answerFive',
+        ]
 
 
 class PollsForm(forms.ModelForm):
+
     class Meta:
         model = Polls
         fields = [
-        'polls_id',
-        'creator',
         'title',
         'questionOne',
         'questionTwo',
@@ -57,3 +94,4 @@ class PollsForm(forms.ModelForm):
         'questionFour',
         'questionFive',
         ]
+
