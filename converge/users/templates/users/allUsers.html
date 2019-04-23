@@ -36,10 +36,12 @@ form{
       {% endif %}
       {% for x in profs %}
       <div class="media">
-        <img class="account-img" src="{{x.profile.image.url}}">
+        <img class="account-img" src="{{x.image.url}}">
         <div class="media-body">
-          <h4>{{x.username}}</h4>
-          <p>{{x.email}}</p>
+          <h4>{{x.user}}</h4>
+          <p>{{x.user.email}}</p>
+          <p>{{x.userDescription}}</p>
+          <p>Interests :{{x.userInterests}}</p>
         </div>
       </div>
       <br>

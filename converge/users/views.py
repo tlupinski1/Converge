@@ -25,8 +25,9 @@ LOGGING = {
 }
 logging.config.dictConfig(LOGGING)
 
+
 def allUsers(request):
-    users = User.objects.all()
+    users = Profile.objects.all()
     '''Following code makes the allUsers page break?
     if(request.method == 'GET'):
       str = request.GET.get('name1')

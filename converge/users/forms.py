@@ -39,7 +39,7 @@ class UpdateUser(forms.ModelForm):
 class UpdateProfile(forms.ModelForm):
     class Meta:
         model = Profile #we want to work with the Profile Model
-        fields = ['image'] #bc everything else is user.
+        fields = ['image', 'userDescription', 'userInterests'] #bc everything else is user.
 
 class ProjectForm(forms.ModelForm):
     class Meta:
