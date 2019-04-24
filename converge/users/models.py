@@ -6,6 +6,7 @@ import django.http.request
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE) #pics is the directory in the MEDIA directory to be saved
     image = models.ImageField(default='pics/default.png',upload_to='pics/') #needs pillow to be installed
+    location = models.CharField(max_length=100, default="")
     userDescription = models.CharField('User description', max_length=1000, default='tell us about yourself')
     userInterests = models.CharField('User interests', max_length=250, default='list your interests')
     def __str__(self):
