@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import OurUserForm, UpdateUser, UpdateProfile, ProjectForm, textForm, PollsForm, AnswerForm
-from users.models import Profile, User, Project, Polls, PollAnswers
+from users.models import Profile, User, Project, Polls, PollAnswers, Members
 import datetime
 from django.http import HttpRequest
 from django import forms
@@ -126,10 +126,16 @@ def profiles(request):
 def myProjects(request):
     user = request.user #find this user
     projects = Project.objects.all() #all projects
-    userProjects =[] #create a list to hold only the projects related to user
+    myProjects =[] #create a list to hold only the projects related to user
     for x in projects:
       if x.creator.user == user:
-        userProjects.append(x)
+        myProjects.append(x)
+    members = Members.objects.all()
+    memberProjects=[]
+    for x in members:
+      if x.member.user == user:
+        proj=x.project
+        memberProjects.append(x)
 
     return render(request,'users/myProjects.html',locals())
 

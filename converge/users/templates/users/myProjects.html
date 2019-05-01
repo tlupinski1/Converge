@@ -43,10 +43,9 @@ small{
 <div class="row" id="main1">
   <div class="col-2"></div>
   <div class="col-9">
-    <div>
-      {{userProjects.projectName}}
-      <h1>My Projects: </h1>
-      {% for x in userProjects %}
+    <div><br><br>
+      <h1>Projects I've created: </h1>
+      {% for x in myProjects %}
           <div class="media1">
             <a href="/projectPage?proj1={{x.projectName}}"><img class="account-img"  src="{{x.projectPicture.url}}"></a>
             <div>
@@ -58,10 +57,32 @@ small{
             </div>
           </div>
       {% empty %}
-        <p>You do not have any projects! <a href="/createProject">Create</a> a project or <a href="/publicDashboard">join</a> one today!</p>
+        <p>You have not created any projects! <a href="/createProject">Create</a> one today!</p>
       {% endfor %}
     </div>
   </div>
 </div>
 
+<div class="row" id="main1">
+  <div class="col-2"></div>
+  <div class="col-9">
+    <div><br><br>
+      <h1>Projects I've joined: </h1>
+      {% for x in memberProjects %}
+          <div class="media1">
+            <a href="/projectPage?proj1={{x.project.projectName}}"><img class="account-img"  src="{{x.project.projectPicture.url}}"></a>
+            <div>
+              <h5><strong>Project Name: {{x.project.projectName}}</strong></h5>
+              <p>Project Type: {{x.project.projectType}}</p>
+              <p>Creator: <a href="/allUsers?name1={{user}}"> {{x.project.creator.user}} </a></p>
+              <p class="text-muted small">Created: {{x.dateTime}}</p>
+              <p>Project Description: {{x.project.projectDescription}}</p>
+            </div>
+          </div>
+      {% empty %}
+        <p>You have not joined any projects <a href="/publicDashboard">join</a> one today!</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 {% endblock%}
