@@ -38,8 +38,7 @@ class Links(models.Model):
         super().save()
 
 class Polls(models.Model):
-    polls_id = models.AutoField(primary_key=True)
-    creator = models.ForeignKey(Profile, on_delete=models.CASCADE, default='Not Logged IN')
+    creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
     title = models.CharField(max_length=120, default='Enter a Title for your Poll')
     questionOne = models.CharField(max_length=120, default='Enter a Question')
     questionTwo = models.CharField(max_length=120, default='Enter a Question')
@@ -48,9 +47,7 @@ class Polls(models.Model):
     questionFive = models.CharField(max_length=120, default='Enter a Question')
 
 class PollAnswers(models.Model):
-    polls_id = models.ForeignKey(Polls, on_delete=models.CASCADE)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    creator = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
     answerOne = models.IntegerField(default=0)
     answerTwo = models.IntegerField(default=0)

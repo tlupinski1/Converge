@@ -56,9 +56,17 @@ def projectCreation(request):
   currentUser = request.user
   if request.method == 'POST':
     form = ProjectForm(request.POST, request.FILES)
-    if form.is_valid():
+    question_form = PollsForm(request.POST,  request.FILES)
+    answer_form = AnswerForm(request.POST, request.FILES)
+    logging.info("Project Is Valid: " + str(form.is_valid()))
+    logging.info("Question Is Valid: " + str(question_form.is_valid()))
+    logging.info("Answer Is Valid: " + str(answer_form.is_valid()))
+    if form.is_valid() and question_form.is_valid() and answer_form.is_valid():
       form.save(commit=False)
+      question_form.save(commit=False)
+      answer_form.save(commit=False)
       prof= Profile.objects.get(user=currentUser.id)
+
       #obj = Project.objects.get(projectName=form.cleaned_data.get('projectName')) #!!!!!
       #form.save()
       now = datetime.datetime.now()
@@ -66,12 +74,23 @@ def projectCreation(request):
       #obj.save() #!!!!!!
       projName=form.cleaned_data.get('projectName')
       proj = Project(creator=prof,dateTime=string1,projectName=form.cleaned_data.get('projectName'),projectType=form.cleaned_data.get('projectType'),projectDescription=form.cleaned_data.get('projectDescription'),projectPicture=form.cleaned_data.get('projectPicture'))
+      answers = PollAnswers(user=prof, title=question_form.cleaned_data.get('title'), answerOne=answer_form.cleaned_data.get('answerOne'),answerTwo=answer_form.cleaned_data.get('answerTwo'),answerThree=answer_form.cleaned_data.get('answerThree'),answerFour=answer_form.cleaned_data.get('answerFour'),answerFive=answer_form.cleaned_data.get('answerFive'))
+      polls = Polls(creator= prof, title=question_form.cleaned_data.get('title'),questionOne=question_form.cleaned_data.get('questionOne'),questionTwo=question_form.cleaned_data.get('questionTwo'),questionThree=question_form.cleaned_data.get('questionThree'),questionFour=question_form.cleaned_data.get('questionFour'),questionFive=question_form.cleaned_data.get('questionFive'))
+      logging.info("Saving Project")
       proj.save()
+      logging.info("Saving Polls")
+      polls.save()
+      logging.info("Saving Answers")
+      answers.save()
+
       messages.success(request, f'{projName} has been created')
       return redirect('/publicDashboard')
   else:
     form = ProjectForm()
-  return render(request,'users/createProject.html',{'form':form,'user':currentUser});
+    question_form = PollsForm()
+    answer_form = AnswerForm()
+  return render(request,'users/createProject.html',{'form':form,'user':currentUser,'q_form':question_form, 'a_form':answer_form});
+ # 'users/pollsCreate.html',{'q_form':question_form, 'a_form':answer_form,'creator':currentUser}
 
 def dashboard(request):
     projects = Project.objects.all() #from db
