@@ -1,0 +1,33 @@
+{% extends "main/header.html" %}
+
+{% block content%}
+<style>
+.area{
+  background-color: white;
+  height: 50vh;
+  width: 50vw;
+  border-radius: 3vh;
+}
+em{
+  text-decoration: underline;
+  font-style: normal;
+}
+textarea{
+  height: 80%;
+}
+</style>
+<h3> Welcome to Poll <em>{{pol.0.title}}</em> by <em>{{pol.0.creator.user}}</em></h3>
+<div class="row" id="main1">
+  <div class="col-1">
+  </div>
+  <div class="col-6 area">
+    <p>Question Form</p>
+    <div class="fieldWrapper">
+      <form id="postForm" method="POST">
+      {% csrf_token %}
+      {{ form.PollsForm}}
+      <button class="btn btn-outline-info" type="submit" action="/pollPage/" value="Post">Save</button>
+      </form>
+    </div>
+  </div>
+{% endblock%}

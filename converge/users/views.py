@@ -198,3 +198,49 @@ def polls_create(request):
     #    'form': form
     #}
     #return render(request,"users/pollscreate.html", context)
+def takePoll(request):
+   currentUser = request.user
+   obj = Polls.objects.get(id=1)
+   context = {
+      'object': obj
+
+  }
+   if request.method == 'POST':
+       answer_form = AnswerForm(request.POST, request.FILES)
+       logging.info("Answer Is Valid: " + str(answer_form.is_valid()))
+       if  answer_form.is_valid():
+           logging.info("Answer Forms Valid")
+           answer_form.save(commit=False)
+           prof = Profile.objects.get(user= currentUser)
+      #obj = Project.objects.get(projectName=form.cleaned_data.get('projectName')) #!!!!!
+      #form.save()
+
+      #obj.save() #!!!!!!
+       answers = PollAnswers(user=prof, title=question_form.cleaned_data.get('title'), answerOne=answer_form.cleaned_data.get('answerOne'),answerTwo=answer_form.cleaned_data.get('answerTwo'),answerThree=answer_form.cleaned_data.get('answerThree'),answerFour=answer_form.cleaned_data.get('answerFour'),answerFive=answer_form.cleaned_data.get('answerFive'))
+       answers.save()
+       messages.success(request, 'Poll has been Taken ')
+   return render(request, "users/takePoll.html", context)
+
+def pollPage(request):
+    form = PollsForm()
+    polls = Polls.objects.all() #from db
+    str = request.GET.get('polls1')
+    poll = Polls.objects.get(title=str)
+    pol = []
+    pol.append(poll)
+    if(request.method == 'GET'):
+        str = request.GET.get('polls1')
+        poll = Polls.objects.get(title=str)
+        pol = []
+        pol.append(poll)
+        return render(request,'users/pollPage.html',{'get':str,'pol':pol, 'form':form})
+    if (request.method == 'POST'):
+        post_text = request.POST.get('the_post')
+        response_data = {}
+        post = Project(textArea=post_text)
+        post.save()
+        return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json"
+        )
+    return render(request,'users/projectPage.html');

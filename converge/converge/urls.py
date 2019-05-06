@@ -36,6 +36,9 @@ urlpatterns = [
     path('',main_views.home,name="main-home"),
     path('myProjects/', user_views.myProjects, name='myProjects'),
     path('projectPage/',user_views.projectPage,name="projPage"),
+    path('takePoll/',user_views.takePoll,name="takepoll"),
+    path('pollPage/',user_views.pollPage,name="pollpage"),
+
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -47,7 +47,7 @@ small{
       <h1>All Public Polls: </h1>
       {% for x in polls %}
       <div class="poll_box">
-        <a href="/projectPage?proj1={{x.title}}"></a>
+        <a href="/pollPage?polls1={{x.title}}">Click here</a>
         <div>
           <h5><strong>Poll Name: {{x.title}}</strong></h5>
           <p>Poll Creator: <a href="/allUsers?name1={{x.creator.user}}"> {{x.creator.user}} </a></p>

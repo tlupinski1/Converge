@@ -1,0 +1,65 @@
+{% extends "main/header.html" %}
+
+{% block content%}
+<div class="container">
+  <h1> Take Poll "{{title}}"</h1>
+  <h3> Welcome to project <em>{{pols.0.title}}</em> by <em>{{pols.0.user}}</em></h3>
+
+  <form id="postForm"  method='POST'> {% csrf_token %}
+
+
+    <p>{{object.questionOne}}</p>
+
+    {% for choice in a_form.answerOne.field.choices %}
+    <li>
+	    <label>
+	      <input type="radio" name="answerOne" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+    </li>
+    {% endfor %}
+
+    <p>{{object.questionTwo }}</p>
+    {% for choice in a_form.answerTwo.field.choices %}
+    <li>
+	    <label>
+	      <input type="radio" name="answerTwo" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+    </li>
+    {% endfor %}
+
+   <p>{{object.questionThree }}</p>
+    {% for choice in a_form.answerThree.field.choices %}
+    <li>
+	    <label>
+	      <input type="radio" name="answerThree" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+    </li>
+    {% endfor %}
+
+    <p>{{object.questionFour }}</p>
+    {% for choice in a_form.answerFour.field.choices %}
+    <li>
+	    <label>
+	      <input type="radio" name="answerFour" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+    </li>
+    {% endfor %}
+
+    <p>{{object.questionFive }}</p>
+    {% for choice in a_form.answerFive.field.choices %}
+    <li>
+	    <label>
+	      <input type="radio" name="answerFive" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+    </li>
+    {% endfor %}
+
+  <input type="submit" value='Save'/>
+  </form>
+</div>
+{% endblock%}
