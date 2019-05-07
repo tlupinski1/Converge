@@ -21,13 +21,23 @@ textarea{
   <div class="col-1">
   </div>
   <div class="col-6 area">
-    <p>Question Form</p>
+    <h2>Poll questions</h2>
     <div class="fieldWrapper">
       <form id="postForm" method="POST">
       {% csrf_token %}
-      {{ form.PollsForm}}
+        <h5> Question One </h5>
+        <p>{{ pol.0.questionOne}}</p>
+        <h5> Question Two </h5>
+        <p>{{ pol.0.questionTwo}}</p>
+        <h5> Question Three </h5>
+        <p>{{ pol.0.questionThree}}</p>
+        <h5> Question Four </h5>
+        <p>{{ pol.0.questionFour}}</p>
+        <h5> Question Five </h5>
+        <p>{{ pol.0.questionFive}}</p>
       <button class="btn btn-outline-info" type="submit" action="/pollPage/" value="Post">Save</button>
       </form>
     </div>
   </div>
+
 {% endblock%}

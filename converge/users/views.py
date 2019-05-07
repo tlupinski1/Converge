@@ -200,7 +200,7 @@ def polls_create(request):
     #return render(request,"users/pollscreate.html", context)
 def takePoll(request):
    currentUser = request.user
-   obj = Polls.objects.get(id=1)
+   obj = Polls.objects.get(id=2)
    context = {
       'object': obj
 
@@ -243,4 +243,4 @@ def pollPage(request):
             json.dumps(response_data),
             content_type="application/json"
         )
-    return render(request,'users/projectPage.html');
+    return render(request,'users/projectPage.html', {'pol':pol});
