@@ -1,0 +1,50 @@
+{% extends "main/header.html" %}
+ssjksksk
+{% block content%}
+<style>
+.area{
+  background-color: white;
+  height: 50vh;
+  width: 50vw;
+  border-radius: 3vh;
+}
+em{
+  text-decoration: underline;
+  font-style: normal;
+}
+textarea{
+  height: 80%;
+}
+</style>
+<h3> Welcome to Poll <em>{{pol.0.title}}</em> by <em>{{pol.0.creator.user}}</em></h3>
+<div class="row" id="main1">
+  <div class="col-1">
+  </div>
+    <h2>Poll questions</h2>
+    <div class="fieldWrapper">
+      <form id="postForm" method="POST">
+      {% csrf_token %}
+        <h5> Question 1</h5>
+        <p>{{ pol.0.questionOne}}</p>
+          {% for choice in answerOne.field.choices %}
+          <li>
+      	    <label>
+      	      <input type="radio" name="answerOne" value="{{choice.0}}">
+      	      <span>{{choice.1}}</span>
+      	    </label>
+          </li>
+          {% endfor %}
+        <h5> Question 2 </h5>
+        <p>{{ pol.0.questionTwo}}</p>
+        <h5> Question 3 </h5>
+        <p>{{ pol.0.questionThree}}</p>
+        <h5> Question 4 </h5>
+        <p>{{ pol.0.questionFour}}</p>
+        <h5> Question 5 </h5>
+        <p>{{ pol.0.questionFive}}</p>
+      <button class="btn btn-outline-info" type="submit" action="/pollPage/" value="Post">Save</button>
+      </form>
+    </div>
+
+
+{% endblock%}
