@@ -1,5 +1,9 @@
 {% extends "main/header.html" %}
+<<<<<<< HEAD
 
+=======
+ssjksksk
+>>>>>>> 5fcf2621dd597f108db2b276e520e470fd20405f
 {% block content%}
 <style>
 .area{
@@ -20,11 +24,15 @@ textarea{
 <div class="row" id="main1">
   <div class="col-1">
   </div>
+<<<<<<< HEAD
   <div class="col-6 area">
+=======
+>>>>>>> 5fcf2621dd597f108db2b276e520e470fd20405f
     <h2>Poll questions</h2>
     <div class="fieldWrapper">
       <form id="postForm" method="POST">
       {% csrf_token %}
+<<<<<<< HEAD
         <h5> Question One </h5>
         <p>{{ pol.0.questionOne}}</p>
         <h5> Question Two </h5>
@@ -34,10 +42,33 @@ textarea{
         <h5> Question Four </h5>
         <p>{{ pol.0.questionFour}}</p>
         <h5> Question Five </h5>
+=======
+        <h5> Question 1</h5>
+        <p>{{ pol.0.questionOne}}</p>
+          {% for choice in answerOne.field.choices %}
+          <li>
+      	    <label>
+      	      <input type="radio" name="answerOne" value="{{choice.0}}">
+      	      <span>{{choice.1}}</span>
+      	    </label>
+          </li>
+          {% endfor %}
+        <h5> Question 2 </h5>
+        <p>{{ pol.0.questionTwo}}</p>
+        <h5> Question 3 </h5>
+        <p>{{ pol.0.questionThree}}</p>
+        <h5> Question 4 </h5>
+        <p>{{ pol.0.questionFour}}</p>
+        <h5> Question 5 </h5>
+>>>>>>> 5fcf2621dd597f108db2b276e520e470fd20405f
         <p>{{ pol.0.questionFive}}</p>
       <button class="btn btn-outline-info" type="submit" action="/pollPage/" value="Post">Save</button>
       </form>
     </div>
+<<<<<<< HEAD
   </div>
+=======
+
+>>>>>>> 5fcf2621dd597f108db2b276e520e470fd20405f
 
 {% endblock%}

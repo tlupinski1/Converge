@@ -223,6 +223,22 @@ def takePoll(request):
 
 def pollPage(request):
     form = PollsForm()
+<<<<<<< HEAD
+=======
+    answer_form = AnswerForm(request.POST, request.FILES)
+    if answer_form.is_valid():
+        logging.info("Both Forms Valid")
+        question_form.save(commit=False)
+        answer_form.save(commit=False)
+        answers = PollAnswers(creator=prof, title=question_form.cleaned_data.get('title'), answerOne=answer_form.cleaned_data.get('answerOne'),answerTwo=answer_form.cleaned_data.get('answerTwo'),answerThree=answer_form.cleaned_data.get('answerThree'),answerFour=answer_form.cleaned_data.get('answerFour'),answerFive=answer_form.cleaned_data.get('answerFive'))
+        answers.save()
+        messages.success(request, 'Poll has been created')
+    else:
+        logging.info("Didnt Save")
+
+        answer_form = AnswerForm()
+
+>>>>>>> 5fcf2621dd597f108db2b276e520e470fd20405f
     polls = Polls.objects.all() #from db
     str = request.GET.get('polls1')
     poll = Polls.objects.get(title=str)
@@ -233,7 +249,11 @@ def pollPage(request):
         poll = Polls.objects.get(title=str)
         pol = []
         pol.append(poll)
+<<<<<<< HEAD
         return render(request,'users/pollPage.html',{'get':str,'pol':pol, 'form':form})
+=======
+        return render(request,'users/pollPage.html',{'get':str,'pol':pol, 'form':form, 'answer_form':answer_form})
+>>>>>>> 5fcf2621dd597f108db2b276e520e470fd20405f
     if (request.method == 'POST'):
         post_text = request.POST.get('the_post')
         response_data = {}
