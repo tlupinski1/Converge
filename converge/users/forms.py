@@ -64,12 +64,11 @@ class textForm(forms.ModelForm):
         }
 
 class AnswerForm(forms.ModelForm):
-    title = forms.CharField(max_length=100, required=True)
     answerOne = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES, required=True)
-    answerTwo = forms.ChoiceField(widget=forms.Select, choices=CHOICES, required=True)
-    answerThree = forms.ChoiceField(widget=forms.Select, choices=CHOICES, required=True)
-    answerFour = forms.ChoiceField(widget=forms.Select, choices=CHOICES, required=True)
-    answerFive = forms.ChoiceField(widget=forms.Select, choices=CHOICES, required=True)
+    answerTwo = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES, required=True)
+    answerThree = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES, required=True)
+    answerFour = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES, required=True)
+    answerFive = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES, required=True)
 
     class Meta:
         model = PollAnswers

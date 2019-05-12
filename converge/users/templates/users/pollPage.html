@@ -23,19 +23,59 @@ textarea{
   <div class="col-6 area">
     <h2>Poll questions</h2>
     <div class="fieldWrapper">
-      <form id="postForm" method="POST">
+      <form action='' method="POST">
       {% csrf_token %}
         <h5> Question One </h5>
         <p>{{ pol.0.questionOne}}</p>
+        {% for choice in a_form.answerOne.field.choices %}
+        <li>
+	    <label>
+	      <input type="radio" name="answerOne" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+       </li>
+        {% endfor %}
         <h5> Question Two </h5>
         <p>{{ pol.0.questionTwo}}</p>
+        {% for choice in a_form.answerTwo.field.choices %}
+        <li>
+	    <label>
+	      <input type="radio" name="answerTwo" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+        </li>
+        {% endfor %}
         <h5> Question Three </h5>
         <p>{{ pol.0.questionThree}}</p>
+        {% for choice in a_form.answerThree.field.choices %}
+        <li>
+	    <label>
+	      <input type="radio" name="answerThree" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+        </li>
+        {% endfor %}
         <h5> Question Four </h5>
         <p>{{ pol.0.questionFour}}</p>
+        {% for choice in a_form.answerFour.field.choices %}
+        <li>
+	    <label>
+	      <input type="radio" name="answerFour" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+        </li>
+        {% endfor %}
         <h5> Question Five </h5>
         <p>{{ pol.0.questionFive}}</p>
-      <button class="btn btn-outline-info" type="submit" action="/pollPage/" value="Post">Save</button>
+        {% for choice in a_form.answerFive.field.choices %}
+        <li>
+	    <label>
+	      <input type="radio" name="answerFive" value="{{choice.0}}">
+	      <span>{{choice.1}}</span>
+	    </label>
+        </li>
+        {% endfor %}
+      <input type="submit" value='Save'/>
       </form>
     </div>
   </div>

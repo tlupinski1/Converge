@@ -158,34 +158,7 @@ def myProjects(request):
 
     return render(request,'users/myProjects.html',locals())
 
-def polls_create(request):
-    currentUser = request.user
-    if request.method == 'POST':
-      question_form = PollsForm(request.POST, request.FILES)
-      answer_form = AnswerForm(request.POST, request.FILES)
-      logging.info("Question Is Valid: " + str(question_form.is_valid()))
-      logging.info("Answer Is Valid: " + str(answer_form.is_valid()))
-      if question_form.is_valid() and answer_form.is_valid():
-        logging.info("Both Forms Valid")
-        question_form.save(commit=False)
-        answer_form.save(commit=False)
-        prof = Profile.objects.get(user= currentUser)
-        #obj = Project.objects.get(projectName=form.cleaned_data.get('projectName')) #!!!!!
-        #form.save()
 
-        #obj.save() #!!!!!!
-        answers = PollAnswers(creator=prof, title=question_form.cleaned_data.get('title'), answerOne=answer_form.cleaned_data.get('answerOne'),answerTwo=answer_form.cleaned_data.get('answerTwo'),answerThree=answer_form.cleaned_data.get('answerThree'),answerFour=answer_form.cleaned_data.get('answerFour'),answerFive=answer_form.cleaned_data.get('answerFive'))
-        polls = Polls(creator= prof, title=question_form.cleaned_data.get('title'),questionOne=question_form.cleaned_data.get('questionOne'),questionTwo=question_form.cleaned_data.get('questionTwo'),questionThree=question_form.cleaned_data.get('questionThree'),questionFour=question_form.cleaned_data.get('questionFour'),questionFive=question_form.cleaned_data.get('questionFive'))
-        polls.save()
-        answers.save()
-        messages.success(request, 'Poll has been created')
-        return redirect('/pollDashboard')
-    else:
-        logging.info("Didnt Save")
-
-        question_form = PollsForm()
-        answer_form = AnswerForm()
-    return render(request,'users/pollsCreate.html',{'q_form':question_form, 'a_form':answer_form,'creator':currentUser})
 
 
 
@@ -221,26 +194,103 @@ def takePoll(request):
        messages.success(request, 'Poll has been Taken ')
    return render(request, "users/takePoll.html", context)
 
+def polls_create(request):
+    currentUser = request.user
+    if request.method == 'POST':
+      question_form = PollsForm(request.POST, request.FILES)
+      answer_form = AnswerForm(request.POST, request.FILES)
+      logging.info("Question Is Valid: " + str(question_form.is_valid()))
+      logging.info("Answer Is Valid: " + str(answer_form.is_valid()))
+      if question_form.is_valid() and answer_form.is_valid():
+        logging.info("Both Forms Valid")
+        question_form.save(commit=False)
+        answer_form.save(commit=False)
+        prof = Profile.objects.get(user= currentUser)
+        #obj = Project.objects.get(projectName=form.cleaned_data.get('projectName')) #!!!!!
+        #form.save()
+
+        #obj.save() #!!!!!!
+        answers = PollAnswers(user=prof, title=question_form.cleaned_data.get('title'), answerOne=answer_form.cleaned_data.get('answerOne'),answerTwo=answer_form.cleaned_data.get('answerTwo'),answerThree=answer_form.cleaned_data.get('answerThree'),answerFour=answer_form.cleaned_data.get('answerFour'),answerFive=answer_form.cleaned_data.get('answerFive'))
+        polls = Polls(creator= prof, title=question_form.cleaned_data.get('title'),questionOne=question_form.cleaned_data.get('questionOne'),questionTwo=question_form.cleaned_data.get('questionTwo'),questionThree=question_form.cleaned_data.get('questionThree'),questionFour=question_form.cleaned_data.get('questionFour'),questionFive=question_form.cleaned_data.get('questionFive'))
+        polls.save()
+        answers.save()
+        messages.success(request, 'Poll has been created')
+        return redirect('/pollDashboard')
+    else:
+        logging.info("Didnt Save")
+
+        question_form = PollsForm()
+        answer_form = AnswerForm()
+    return render(request,'users/pollsCreate.html',{'q_form':question_form, 'a_form':answer_form,'creator':currentUser})
+
 def pollPage(request):
-    form = PollsForm()
-    polls = Polls.objects.all() #from db
-    str = request.GET.get('polls1')
-    poll = Polls.objects.get(title=str)
-    pol = []
-    pol.append(poll)
-    if(request.method == 'GET'):
+    logging.info("Inside pollPage")
+    currentUser = request.user
+
+    # logging.info("Answer Is Valid: " + str(answer_form.is_valid())
+
+    if request.method == 'POST':
+      answer_form = AnswerForm(request.POST, request.FILES)
+      string = request.session.get('req_string', None)
+      poll = Polls.objects.get(title=string)
+      pol = []
+      pol.append(poll)
+      logging.info("Inside Post")
+      print(answer_form.is_valid())
+      answer_form.non_field_errors()
+      field_errors = [(field.label, field.errors) for field in answer_form]
+      logging.info(field_errors)
+      if answer_form.is_valid():
+        logging.info("Forms Valid")
+        answer_form.save(commit=False)
+        prof = Profile.objects.get(user= currentUser)
+        #obj = Project.objects.get(projectName=form.cleaned_data.get('projectName')) #!!!!!
+        #form.save()
+
+        #obj.save() #!!!!!!
+        answers = PollAnswers(user=prof, title=string, answerOne=answer_form.cleaned_data.get('answerOne'),answerTwo=answer_form.cleaned_data.get('answerTwo'),answerThree=answer_form.cleaned_data.get('answerThree'),answerFour=answer_form.cleaned_data.get('answerFour'),answerFive=answer_form.cleaned_data.get('answerFive'))
+        answers.save()
+        messages.success(request, 'Poll has been filled out!')
+        return redirect('/pollDashboard')
+      else:
+        logging.info("Didnt Save")
+        return render(request, 'users/pollPage.html', {'pol': pol, 'a_form': answer_form, 'creator': currentUser})
+    elif request.method == 'GET':
         str = request.GET.get('polls1')
+        request.session['req_string'] = str
         poll = Polls.objects.get(title=str)
         pol = []
         pol.append(poll)
-        return render(request,'users/pollPage.html',{'get':str,'pol':pol, 'form':form})
-    if (request.method == 'POST'):
-        post_text = request.POST.get('the_post')
-        response_data = {}
-        post = Project(textArea=post_text)
-        post.save()
-        return HttpResponse(
-            json.dumps(response_data),
-            content_type="application/json"
-        )
-    return render(request,'users/projectPage.html', {'pol':pol});
+        logging.info("Didnt Save")
+        answer_form = AnswerForm(request.POST, request.FILES)
+
+        return render(request, 'users/pollPage.html', {'pol': pol, 'a_form': answer_form, 'creator': currentUser})
+
+    return render(request, 'users/pollPage.html')
+
+
+
+
+    # currentUser = request.user
+    # form = AnswerForm()
+    # polls = Polls.objects.all() #from db
+    # str = request.GET.get('polls1')
+    # poll = Polls.objects.get(title=str)
+    # pol = []
+    # pol.append(poll)
+    # if(request.method == 'GET'):
+    #     str = request.GET.get('polls1')
+    #     poll = Polls.objects.get(title=str)
+    #     pol = []
+    #     pol.append(poll)
+    #     return render(request,'users/pollPage.html',{'get':str,'pol':pol, 'form':form})
+    # if (request.method == 'POST'):
+    #     post_text = request.POST.get('the_post')
+    #     response_data = {}
+    #     post = Project(textArea=post_text)
+    #     post.save()
+    #     return HttpResponse(
+    #         json.dumps(response_data),
+    #         content_type="application/json"
+    #     )
+    # return render(request,'users/projectPage.html', {'pol':pol});
