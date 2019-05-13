@@ -96,10 +96,10 @@ def dashboard(request):
    projects = Project.objects.all() #from db
    user = request.user
    if (request.method == 'GET'):
-             p = request.GET.get('value')
-             addMember = Members(project="p", member="user")
+             x = request.GET.get('value')
+             addMember = Members(project="x", member="user")
              addMember.save()
-             return redirect('/publicDashboard')
+             return redirect('users/dashboard')
 
    return render(request,'users/dashboard.html',locals())
 
