@@ -93,8 +93,15 @@ def projectCreation(request):
  # 'users/pollsCreate.html',{'q_form':question_form, 'a_form':answer_form,'creator':currentUser}
 
 def dashboard(request):
-    projects = Project.objects.all() #from db
-    return render(request,'users/dashboard.html',{'proj':projects})
+   projects = Project.objects.all() #from db
+   user = request.user
+   if (request.method == 'GET'):
+             p = request.GET.get('value')
+             addMember = Members(project="p", member="user")
+             addMember.save()
+             return redirect('/publicDashboard')
+
+   return render(request,'users/dashboard.html',locals())
 
 def pollsDashboard(request):
     polls = Polls.objects.all() #from db

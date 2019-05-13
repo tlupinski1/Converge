@@ -54,6 +54,12 @@ small{
           <p>Creator: <a href="/allUsers?name1={{x.creator.user}}"> {{x.creator.user}} </a></p>
           <p class="text-muted small">Created: {{x.dateTime}}</p>
           <p>Project Description: {{x.projectDescription}}</p>
+          <p><form action="get">
+              <button
+               type="submit"
+               value="{{x}}"
+               >Join Project
+              </button></p>
         </div>
       </div>
       {% endfor %}
