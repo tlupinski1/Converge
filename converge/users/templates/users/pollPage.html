@@ -18,7 +18,6 @@ form{
 }
 .fieldwrapper{
   margin: auto;
-  text-align: center;
 
 }
 .media1{
@@ -33,12 +32,20 @@ form{
 }
 p{
   margin: 0px;
-  text-align: left;
   font-size: 18px;
   font-weight: bold;
 }
+h3{
+  text-align: center;
+}
+h3{
+  text-align: center;
+}
 h5{
   margin: .5px;
+  text-align: left;
+  font-size: 12px;
+
 }
 li{
   margin: 0px;
@@ -48,17 +55,21 @@ small{
   position: relative;
   bottom: 0px;
 }
+
+.row{
+  margin: auto;
+}
 </style>
 <h3> Welcome to Poll <em>{{pol.0.title}}</em> by <em>{{pol.0.creator.user}}</em></h3>
 <div class="row" id="main1">
-  <div class="col-1">
+  <div class="col-3">
   </div>
   <div class="col-6 area ">
-    <h2>Poll questions</h2>
+    <h2>Poll Questions:</h2>
     <div class="fieldWrapper">
       <form action='' method="POST">
       {% csrf_token %}
-        <h5> Question One </h5>
+        <h5> Question One: </h5>
         <p>{{ pol.0.questionOne}}</p>
         {% for choice in a_form.answerOne.field.choices %}
         <li>
@@ -68,7 +79,7 @@ small{
 	    </label>
        </li>
         {% endfor %}
-        <h5> Question Two </h5>
+        <h5> Question Two: </h5>
         <p>{{ pol.0.questionTwo}}</p>
         {% for choice in a_form.answerTwo.field.choices %}
         <li>
@@ -78,7 +89,7 @@ small{
 	    </label>
         </li>
         {% endfor %}
-        <h5> Question Three </h5>
+        <h5> Question Three: </h5>
         <p>{{ pol.0.questionThree}}</p>
         {% for choice in a_form.answerThree.field.choices %}
         <li>
@@ -88,7 +99,7 @@ small{
 	    </label>
         </li>
         {% endfor %}
-        <h5> Question Four </h5>
+        <h5> Question Four: </h5>
         <p>{{ pol.0.questionFour}}</p>
         {% for choice in a_form.answerFour.field.choices %}
         <li>
@@ -98,7 +109,7 @@ small{
 	    </label>
         </li>
         {% endfor %}
-        <h5> Question Five </h5>
+        <h5> Question Five: </h5>
         <p>{{ pol.0.questionFive}}</p>
         {% for choice in a_form.answerFive.field.choices %}
         <li>
