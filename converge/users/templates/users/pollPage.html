@@ -2,12 +2,7 @@
 
 {% block content%}
 <style>
-.area{
-  background-color: white;
-  height: 50vh;
-  width: 50vw;
-  border-radius: 3vh;
-}
+
 em{
   text-decoration: underline;
   font-style: normal;
@@ -15,12 +10,50 @@ em{
 textarea{
   height: 80%;
 }
+
+form{
+  background-color: white;
+  border-radius: 2vh;
+  /* padding: 2vh; */
+}
+.fieldwrapper{
+  margin: auto;
+  text-align: center;
+
+}
+.media1{
+  float: left;
+  background-color:white;
+  width: 20vw;
+  height: 20vw;
+  border-radius: 2vh;
+  margin-left: 1vw;
+  margin-bottom: 1vh;
+  padding-left:1vw;
+}
+p{
+  margin: 0px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+}
+h5{
+  margin: .5px;
+}
+li{
+  margin: 0px;
+  text-align: left;
+}
+small{
+  position: relative;
+  bottom: 0px;
+}
 </style>
 <h3> Welcome to Poll <em>{{pol.0.title}}</em> by <em>{{pol.0.creator.user}}</em></h3>
 <div class="row" id="main1">
   <div class="col-1">
   </div>
-  <div class="col-6 area">
+  <div class="col-6 area ">
     <h2>Poll questions</h2>
     <div class="fieldWrapper">
       <form action='' method="POST">
