@@ -3,10 +3,34 @@
 
 
 {% block content%}
+<style>
 
 
-<head>
-<title>W3.CSS</title>
+#info {
+  right:0;
+  width: 35%;
+  color: #650D91;
+  padding-top: 50px;
+  position: absolute;
+}
+
+
+#pics {
+  float: left;
+  color: #650D91;
+
+  width: 75%;
+
+  text-align: center;
+    padding-top: 30px;
+}
+
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+</style>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -15,15 +39,27 @@
 </style>
 </head>
 
-<body>
-
-<div class="w3-content w3-section" style="max-width:600px">
+<body><section>
+<div id="pics">
+<div class="w3-content w3-section" style="max-width:700px">
   <img class="mySlides" src="/images/pics/c1.png" style="width:100%">
   <img class="mySlides" src="/images/pics/c2.jpg" style="width:100%">
   <img class="mySlides" src="/images/pics/c3.png" style="width:100%">
   <img class="mySlides" src="/images/pics/c4.jpg" style="width:100%">
   <img class="mySlides" src="/images/pics/c6.jpg" style="width:100%">
 </div>
+</div>
+
+
+
+<div id="info">
+ <h1>Want to work on something <i>great?</i></h1>
+ <p>Use converge to find the perfect collaborators for your project</p>
+ <p>Or search through already created projects to join a team</p>
+<p><strong><a style="color:green;" href="register/">Sign up</a> today. It's free, it's easy and it's fun</p></strong>
+</div>
+</section>
+<hr>
 
 <script>
 var myIndex = 0;
@@ -41,9 +77,5 @@ function carousel() {
   setTimeout(carousel, 2000); // Change image every 2 seconds
 }
 </script>
-
-<hr>
-
-
 
 {% endblock%}
